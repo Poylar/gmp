@@ -2,26 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html {
+  font-family: 'arboria';
+  font-size: 16px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  .btn {
+    @apply px-5 py-3;
+    &--primary {
+      @apply rounded-2xl bg-blue-600 font-medium text-white transition-colors;
+      &:hover {
+        @apply bg-blue-500;
+      }
+    }
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .blackout {
+    &:before {
+      @apply fixed inset-0 h-full w-full bg-black opacity-60;
+    }
+  }
+
+  .section {
+    @apply relative py-36;
+    &--sm {
+      @apply py-24;
+    }
+    &--md {
+      @apply py-32;
+    }
+    &--lg {
+      @apply py-36;
+    }
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, #111827 0%, #1f293e 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #6366f1 0%, #ac54f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-shadow {
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+  }
 }
