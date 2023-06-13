@@ -13,9 +13,7 @@ const RenderBlock = ({ type, data }) => {
 const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
-      <Head>
-        <title>{data.pagetitle}</title>
-      </Head>
+      <Head>{data.pagetitle && <title>{data.pagetitle}</title>}</Head>
       {data.blocks.map((block, index) => (
         <RenderBlock key={index} data={block.values} type={block.chunk} />
       ))}
