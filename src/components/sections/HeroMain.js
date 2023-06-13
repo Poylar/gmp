@@ -1,9 +1,6 @@
-import Button from '../ui/Button';
-import Play from '/public/play.svg';
-
 import { motion } from 'framer-motion';
 
-const HeroMain = () => {
+const HeroMain = ({ data }) => {
   const heroVariants = {
     initial: {
       borderBottomLeftRadius: '0px',
@@ -25,16 +22,13 @@ const HeroMain = () => {
       }}
       className='section relative min-h-screen overflow-hidden  text-white'
     >
-      <video className='blackout absolute inset-0 -z-10 h-full  w-full object-cover' autoPlay muted loop>
-        <source src='https://amkai.hamburg/assets/userfiles/videos/video.mp4' type='video/mp4' />
+      <video className='blackout absolute top-0 inset-0 -z-10 h-full  w-full object-cover' autoPlay muted loop>
+        <source src={data.video.url} type='video/mp4' />
       </video>
-      <div className='absolute flex h-full w-full items-center justify-center text-white'>
+      <div className='absolute flex h-full w-full font-[350] items-center justify-center text-white'>
         <div className='flex max-w-3xl flex-col items-center gap-6'>
-          <h1 className='text-center text-4xl font-medium lg:text-7xl'>Transforming visions into reality</h1>
-          <Button variant='primary' className='mt-6 px-10 flex items-center gap-6 rounded-3xl'>
-            Find out more
-            <Play />
-          </Button>
+          <h1 className='text-center text-4xl font-medium lg:text-7xl'>{data.title}</h1>
+          {data.description && <p className='text-center text-lg f md:text-xl'>{data.description}</p>}
         </div>
       </div>
     </motion.section>

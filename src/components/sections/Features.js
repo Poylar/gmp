@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import Arrow from '/public/arrow-link.svg';
 import Corner from '/public/corner.svg';
 
-const Features = () => {
-  const data = [1, 2, 3];
+const Features = ({ data }) => {
   return (
     <section className='section section--lg bg-gradient-dark text-gray-50'>
       <div className='flex flex-col gap-14 md:gap-32 container'>
-        {data.map((item, index) => {
+        {data.items.map((item, index) => {
           const isEven = index % 2 === 0;
           const cornerPositionTop = !isEven ? 'right-0 rotate-90' : 'left-0 rotate-270';
           const cornerPositionBottom = !isEven ? 'left-0 -rotate-90' : 'right-0 rotate-180';
@@ -28,29 +28,20 @@ const Features = () => {
                   whileInView={{ width: 0 }}
                   transition={{ duration: 0.7 }}
                 ></motion.div>
-                <video
-                  className='w-full h-full object-cover '
-                  src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4'
-                  loop
-                  playsInline
-                  autoPlay
-                  muted
-                ></video>
+
+                <video className='w-full h-full object-cover ' src={item.video ? item.video.url : ''} loop playsInline autoPlay muted></video>
               </div>
 
               <div className='flex flex-col gap-4 md:gap-6 lg:py-8 lg:px-12 relative'>
                 <Corner className={clsx('hidden lg:block absolute top-0', cornerPositionTop)} />
                 <Corner className={clsx('hidden lg:block absolute bottom-0', cornerPositionBottom)} />
 
-                <h2 className='text-3xl md:text-5xl font-medium'>We do campaigns that work well for your idea</h2>
-                <p className='text-xl md:text-lg'>
-                  Our documentary campaigns feature leading figures, organizations, and leaders in open and candid discussions about transformative
-                  strategies and mindsets, addressing complex trends.
-                </p>
-                <a href='' className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
-                  <span>All campaigns</span>
+                <h2 className='text-3xl md:text-5xl font-medium'>{item.title}</h2>
+                <p className='text-xl md:text-lg'>{item.description}</p>
+                <Link href={`${item.button?.href}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
+                  <span>{item.button.caption}</span>
                   <Arrow className='text-blue-500 transition-transform group-hover:translate-x-1' />
-                </a>
+                </Link>
               </div>
             </div>
           );

@@ -1,7 +1,7 @@
 import { motion, stagger } from 'framer-motion';
-import Button from '../ui/Button';
+import Link from 'next/link';
 
-const Cta = () => {
+const Cta = ({ data }) => {
   const variants = {
     initial: {
       opacity: 0,
@@ -35,7 +35,7 @@ const Cta = () => {
               }}
               className='text-4xl md:text-6xl font-medium flex items-center gap-5 green-circle'
             >
-              Let’s create
+              {data.title}
             </motion.h2>
             <motion.p
               initial={{
@@ -52,11 +52,11 @@ const Cta = () => {
               }}
               className='text-gray-700 text-lg md:text-xl '
             >
-              Unleashing the potential of your brand
+              {data.subtitle}
             </motion.p>
           </div>
           <div className='flex'>
-            {[1, 2, 3, 4].map((item, index) => (
+            {data.videos.map((item, index) => (
               <motion.div
                 variants={variants}
                 initial={{
@@ -74,12 +74,14 @@ const Cta = () => {
                 className='flex w-32 h-32 rounded-full overflow-hidden flex-1 -mr-3 last:mr-0 border-4 border-white'
               >
                 <video className='w-full h-full object-cover' autoPlay muted loop>
-                  <source src='https://amkai.hamburg/assets/userfiles/videos/video.mp4' type='video/mp4' />
+                  <source src={item.url} />
                 </video>
               </motion.div>
             ))}
           </div>
-          <Button className='py-5 px-8'>Get in touch</Button>
+          <Link className='py-5 px-8 btn btn--primary' href='/contacts'>
+            Get in touch
+          </Link>
         </div>
       </div>
     </section>

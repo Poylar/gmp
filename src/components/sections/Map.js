@@ -25,19 +25,6 @@ const markers = [
   },
 ];
 
-function buildCurves(start, end, arc) {
-  const x0 = start[0];
-  const x1 = end[0];
-  const y0 = start[1];
-  const y1 = end[1];
-  const curve = {
-    forceUp: `${x1} ${y0}`,
-    forceDown: `${x0} ${y1}`,
-  }[arc.curveStyle];
-
-  return `M ${start.join(' ')} Q ${curve} ${end.join(' ')}`;
-}
-
 const Map = () => {
   const markerCoordinates = markers.map(({ coordinates }) => coordinates);
 

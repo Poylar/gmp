@@ -10,7 +10,7 @@ function ParallaxText({ children, baseVelocity = 100 }) {
     damping: 50,
     stiffness: 400,
   });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+  const velocityFactor = useTransform(smoothVelocity, [0, 2000], [0, 5], {
     clamp: false,
   });
 
@@ -19,7 +19,8 @@ function ParallaxText({ children, baseVelocity = 100 }) {
    * have to replace for wrapping that works for you or dynamically
    * calculate
    */
-  const x = useTransform(baseX, (v) => `${wrap(-10, -100, v)}%`);
+  const l = children.length;
+  const x = useTransform(baseX, (v) => `${wrap(-l, -l + 25, v)}%`);
 
   const directionFactor = useRef(1);
   useAnimationFrame((t, delta) => {
@@ -59,13 +60,15 @@ function ParallaxText({ children, baseVelocity = 100 }) {
   );
 }
 
-export default function App() {
+const Values = ({ data }) => {
   return (
     <section className='section section--md'>
-      <ParallaxText baseVelocity={-5}>Fitness Clarity Creativity Health Networking</ParallaxText>
-      <ParallaxText baseVelocity={5}>Communication Stress reduction Adaptability Organization</ParallaxText>
-      <ParallaxText baseVelocity={-5}>Growth Productivity Advancement Knowledge</ParallaxText>
-      <ParallaxText baseVelocity={5}>Satisfaction Balance Empowerment Fulfillment</ParallaxText>
+      <ParallaxText baseVelocity={-2}>Fitness Clarity Creativity Health Networking</ParallaxText>
+      <ParallaxText baseVelocity={2}>Communication Stress reduction Adaptability Organization</ParallaxText>
+      <ParallaxText baseVelocity={-2}>Growth Productivity Advancement Knowledge</ParallaxText>
+      <ParallaxText baseVelocity={2}>Satisfaction Balance Empowerment Fulfillment</ParallaxText>
     </section>
   );
-}
+};
+
+export default Values;

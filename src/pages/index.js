@@ -1,36 +1,34 @@
 import { getPageData } from '@/api/api';
 import { getMenu } from '@/api/getMenu';
 import Layout from '@/components/layout';
-import About from '@/components/sections/About';
-import Cta from '@/components/sections/Cta';
-import Features from '@/components/sections/Features';
-import HeroMain from '@/components/sections/HeroMain';
-import Map from '@/components/sections/Map';
-import Values from '@/components/sections/Values';
+import Sections from '@/components/sections';
 import Head from 'next/head';
 
-function Page({ pageData, nav }) {
+const RenderBlock = ({ type, data }) => {
+  const Component = Sections[type];
+  if (!Component) return null;
+  return <Component data={data} />;
+};
+
+const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
       <Head>
-        <title>{pageData.pagetitle}</title>
+        <title>{data.pagetitle}</title>
       </Head>
-      <HeroMain />
-      <About />
-      <Features />
-      <Values />
-      <Map />
-      <Cta />
+      {data.blocks.map((block, index) => (
+        <RenderBlock key={index} data={block.values} type={block.chunk} />
+      ))}
     </Layout>
   );
-}
+};
 
 export async function getStaticProps({ locale }) {
-  const pageData = await getPageData(locale, 'index');
+  const data = await getPageData(locale, 'home');
   const nav = await getMenu(locale);
   return {
     props: {
-      pageData,
+      data,
       nav,
     },
   };

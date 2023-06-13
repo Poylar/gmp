@@ -1,6 +1,9 @@
 import { Player } from '@lottiefiles/react-lottie-player';
 import { motion } from 'framer-motion';
-const About = () => {
+
+import Link from 'next/link';
+
+const About = ({ data }) => {
   return (
     <section className='section section--lg'>
       <motion.div
@@ -16,18 +19,11 @@ const About = () => {
           transition={{ duration: 0.5 }}
           className='text-2xl md:text-6xl text-center text-shadow'
         >
-          Wir sind eine Produktionsfirma, die durch ihre digitale Arbeit in Form von individuellen Filmen, die globale Wirtschaft und zukunftsweisende
-          Technologien vorantreibt.
+          {data.title}
         </motion.p>
-        <motion.a
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          href=''
-          className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'
-        >
-          <span>Unsere Arbeit</span>
-        </motion.a>
+        <Link href={`${data.button.href}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
+          <span>{data.button.caption}</span>
+        </Link>
       </motion.div>
     </section>
   );

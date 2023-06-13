@@ -1,23 +1,34 @@
 import { getAllPageIds, getPageData } from '@/api/api';
 import { getMenu } from '@/api/getMenu';
 import Layout from '@/components/layout';
+import Sections from '@/components/sections';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-function Page({ pageData, nav }) {
-  const router = useRouter();
+
+const RenderBlock = ({ type, data }) => {
+  const Component = Sections[type];
+  if (!Component) return null;
+  return <Component data={data} />;
+};
+
+const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
-      <Head>{/* <title>{pageData.pagetitle ? pageData.pagetitle : null}</title> */}</Head>
+      <Head>
+        <title>{data.pagetitle}</title>
+      </Head>
+      {data.blocks.map((block, index) => (
+        <RenderBlock key={index} data={block.values} type={block.chunk} />
+      ))}
     </Layout>
   );
-}
+};
 
 export async function getStaticProps({ params, locale }) {
-  const pageData = await getPageData(locale, params.slug);
+  const data = await getPageData(locale, params.slug);
   const nav = await getMenu(locale);
   return {
     props: {
-      pageData,
+      data,
       nav,
     },
   };
