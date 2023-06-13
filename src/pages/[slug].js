@@ -8,7 +8,7 @@ function Page({ pageData, nav }) {
   return (
     <Layout nav={nav}>
       <Head>
-        <title>{pageData.pagetitle}</title>
+        <title>{pageData.pagetitle ? pageData.pagetitle : null}</title>
       </Head>
     </Layout>
   );
