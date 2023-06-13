@@ -1,76 +1,71 @@
+import { wrap } from '@motionone/utils';
 import { motion, useAnimationFrame, useMotionValue, useScroll, useSpring, useTransform, useVelocity } from 'framer-motion';
 import { useRef } from 'react';
 
-const data = [
-  ['Fitness', 'Clarity', 'Creativity', 'Health', 'Networking', 'Fitness', 'Clarity', 'Creativity', 'Health', 'Networking'],
-  ['Communication', 'Stress reduction', 'Productivity', 'Health', 'Networking', 'Fitness', 'Clarity', 'Creativity', 'Health', 'Networking'],
-  ['Fitness', 'Clarity', 'Creativity', 'Health', 'Networking', 'Fitness', 'Clarity', 'Creativity', 'Health', 'Networking'],
-  ['Fitness', 'Clarity', 'Creativity', 'Health', 'Networking', 'Fitness', 'Clarity', 'Creativity', 'Health', 'Networking'],
-];
-
-const wrap = (min, max, v) => {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
-
-const Values = ({ children }) => {
+function ParallaxText({ children, baseVelocity = 100 }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 50,
-    stiffness: 300,
+    stiffness: 400,
   });
-  const skewVelocity = useSpring(scrollVelocity, {
-    stiffness: 100,
-    damping: 30,
-  });
-
-  const skewVelocityFactor = useTransform(skewVelocity, [-1000, 1000], [-30, 30]);
-
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
     clamp: false,
   });
-  const x = useTransform(baseX, (v) => `${wrap(0, -25, v)}%`);
-  const directionFactor = useRef(1);
 
+  /**
+   * This is a magic wrapping for the length of the text - you
+   * have to replace for wrapping that works for you or dynamically
+   * calculate
+   */
+  const x = useTransform(baseX, (v) => `${wrap(-10, -100, v)}%`);
+
+  const directionFactor = useRef(1);
   useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * -5 * (delta / 1000);
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+    /**
+     * This is what changes the direction of the scroll once we
+     * switch scrolling directions.
+     */
     if (velocityFactor.get() < 0) {
       directionFactor.current = -1;
     } else if (velocityFactor.get() > 0) {
       directionFactor.current = 1;
     }
-    if (velocityFactor.get() !== 0) {
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
-      baseX.set(baseX.get() + moveBy);
-    }
+
+    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+
+    baseX.set(baseX.get() + moveBy);
   });
 
+  /**
+   * The number of times to repeat the child text should be dynamically calculated
+   * based on the size of the text and viewport. Likewise, the x motion value is
+   * currently wrapped between -20 and -45% - this 25% is derived from the fact
+   * we have four children (100% / 4). This would also want deriving from the
+   * dynamically generated number of children.
+   */
   return (
-    <section className='overflow-hidden section section--md'>
-      <div className='parallax'>
-        {data.map((item, index) => {
-          return (
-            <motion.div className='scroller' style={{ x }}>
-              <motion.span className='text-7xl'>
-                {item.map((item, index) => {
-                  return (
-                    <>
-                      <span className='text-3xl md:text-7xl odd:text-blue-600 font-medium whitespace-nowrap mr-4'>{item}</span>
-                      <span className='text-3xl md:text-7xl odd:text-blue-600 font-medium whitespace-nowrap mr-4'>{item}</span>
-                      <span className='text-3xl md:text-7xl odd:text-blue-600 font-medium whitespace-nowrap mr-4'>{item}</span>
-                      <span className='text-3xl md:text-7xl odd:text-blue-600 font-medium whitespace-nowrap mr-4'>{item}</span>
-                    </>
-                  );
-                })}
-              </motion.span>
-            </motion.div>
-          );
-        })}
-      </div>
+    <div className='parallax'>
+      <motion.div className='scroller' style={{ x }}>
+        <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
+        <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
+        <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
+        <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
+      </motion.div>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <section className='section section--md'>
+      <ParallaxText baseVelocity={-5}>Fitness Clarity Creativity Health Networking</ParallaxText>
+      <ParallaxText baseVelocity={5}>Communication Stress reduction Adaptability Organization</ParallaxText>
+      <ParallaxText baseVelocity={-5}>Growth Productivity Advancement Knowledge</ParallaxText>
+      <ParallaxText baseVelocity={5}>Satisfaction Balance Empowerment Fulfillment</ParallaxText>
     </section>
   );
-};
-
-export default Values;
+}

@@ -2,8 +2,10 @@ import { getPageData } from '@/api/api';
 import { getMenu } from '@/api/getMenu';
 import Layout from '@/components/layout';
 import About from '@/components/sections/About';
+import Cta from '@/components/sections/Cta';
 import Features from '@/components/sections/Features';
 import HeroMain from '@/components/sections/HeroMain';
+import Map from '@/components/sections/Map';
 import Values from '@/components/sections/Values';
 import Head from 'next/head';
 
@@ -17,6 +19,8 @@ function Page({ pageData, nav }) {
       <About />
       <Features />
       <Values />
+      <Map />
+      <Cta />
     </Layout>
   );
 }

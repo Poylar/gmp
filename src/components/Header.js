@@ -5,7 +5,7 @@ import Button from './ui/Button';
 
 const Header = ({ nav }) => {
   return (
-    <header className='text-white absolute inset-x-0 flex w-full items-center justify-between px-14 py-8 text-gray-200 z-20'>
+    <header className='absolute inset-x-0 flex w-full items-center justify-between px-14 py-8 text-gray-200 z-20'>
       <Logo />
       <Nav nav={nav} />
       <div className='flex gap-2'>

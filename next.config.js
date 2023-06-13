@@ -4,6 +4,7 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'de'],
     defaultLocale: 'en',
+    localeDetection: false,
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));

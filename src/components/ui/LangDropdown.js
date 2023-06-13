@@ -3,8 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import ArrowDown from '/public/arrow-down.svg';
 
-const LangDropdown = () => {
+const LangDropdown = ({ className }) => {
   const { locale, locales, asPath } = useRouter();
   const [dropDown, setDropDown] = useState(false);
   const dropdownRef = useRef(null);
@@ -26,16 +27,16 @@ const LangDropdown = () => {
     setDropDown(!dropDown);
   };
   return (
-    <div className='relative flex flex-col ' ref={dropdownRef}>
+    <div className='relative flex flex-col self-start ' ref={dropdownRef}>
       <button className='flex items-center gap-3 rounded-2xl border border-gray-500 px-5 py-3' onClick={toggleDropdown}>
         <Image src={'/' + locale + '.svg'} width={24} height={24} alt='' className='overflow-hidden rounded-full' />
         <span className='capitalize'>{locale}</span>
-        <Image src={'/arrow-down.svg'} width={20} height={20} alt='' className={'transition-transform' + (dropDown ? ' rotate-180' : '')} />
+        <ArrowDown width={20} height={20} alt='' className={'transition-transform' + (dropDown ? ' rotate-180' : '')} />
       </button>
 
       <div
         className={clsx(
-          'absolute top-full z-10 mt-1 flex w-full flex-col overflow-hidden rounded-2xl bg-white text-gray-950 transition-all duration-300',
+          `absolute top-full ${className} z-10 mt-1 flex w-full flex-col overflow-hidden rounded-2xl bg-white text-gray-950 transition-all duration-300`,
           dropDown ? 'visible -translate-y-0 opacity-100' : 'invisible -translate-y-6 opacity-0'
         )}
       >
@@ -43,7 +44,7 @@ const LangDropdown = () => {
           return (
             <Link
               locale={locale}
-              href={locale}
+              href={asPath}
               key={locale}
               className='flex gap-3 border-b border-gray-200  px-5 py-3 transition-colors last:border-b-0 hover:bg-gray-100'
             >

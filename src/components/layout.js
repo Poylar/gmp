@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import Footer from './Footer';
 
 const Layout = ({ children, nav, pageContext }) => {
   return (
@@ -6,6 +7,7 @@ const Layout = ({ children, nav, pageContext }) => {
       <div className='flex-1 '>
         <Header nav={nav} />
         <div>{children}</div>
+        <Footer />
       </div>
     </div>
   );

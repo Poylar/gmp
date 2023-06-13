@@ -14,7 +14,7 @@ const About = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className='text-6xl text-center text-shadow'
+          className='text-2xl md:text-6xl text-center text-shadow'
         >
           Wir sind eine Produktionsfirma, die durch ihre digitale Arbeit in Form von individuellen Filmen, die globale Wirtschaft und zukunftsweisende
           Technologien vorantreibt.
