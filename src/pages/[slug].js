@@ -7,9 +7,7 @@ function Page({ pageData, nav }) {
   const router = useRouter();
   return (
     <Layout nav={nav}>
-      <Head>
-        <title>{pageData.pagetitle ? pageData.pagetitle : null}</title>
-      </Head>
+      <Head>{/* <title>{pageData.pagetitle ? pageData.pagetitle : null}</title> */}</Head>
     </Layout>
   );
 }
