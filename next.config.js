@@ -6,6 +6,9 @@ const nextConfig = {
     defaultLocale: 'en',
     localeDetection: false,
   },
+  images: {
+    domains: ['gmp.einzelwerk.io'],
+  },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
     config.module.rules.push(

@@ -90,15 +90,25 @@ html {
     position: relative;
     &:before {
       content: '';
-
-      background: conic-gradient(from 180deg at 50% 50%, #3327f9 0deg, rgba(154, 149, 238, 0) 360deg);
-      filter: blur(100px);
-      transform: rotate(-129.51deg);
+      @apply animate-spin-slow;
+      background: conic-gradient(
+        from 132.9deg at 50% 50%,
+        rgba(87, 77, 241, 0) -22.5deg,
+        rgba(111, 62, 250, 0.7) 22.5deg,
+        rgba(125, 50, 247, 0.723958) 76.88deg,
+        rgba(185, 56, 245, 0.54) 165deg,
+        rgba(219, 62, 244, 0.35) 236.25deg,
+        rgba(243, 111, 69, 0.191406) 290.63deg,
+        rgba(87, 77, 241, 0) 337.5deg,
+        rgba(111, 62, 250, 0.7) 382.5deg
+      );
+      opacity: 0.5;
+      filter: blur(120px);
       position: absolute;
       right: 0;
       top: 0;
-      width: 1100px;
-      height: 1100px;
+      width: 100%;
+      padding-bottom: 100%;
       z-index: 0;
     }
   }
@@ -130,7 +140,7 @@ html {
   .accordion-item {
     @apply border-b border-gray-700;
     &__button {
-      @apply py-8 w-full text-left flex justify-between items-center text-2xl font-medium;
+      @apply py-8 w-full px-2 text-left flex justify-between items-center text-2xl font-medium;
     }
     &__content-wrapper {
       height: 0;

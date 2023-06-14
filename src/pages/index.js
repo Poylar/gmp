@@ -31,6 +31,7 @@ export async function getStaticProps({ locale }) {
       data,
       nav,
     },
+    revalidate: 1,
   };
 }
 
