@@ -29,7 +29,9 @@ const Features = ({ data }) => {
                   transition={{ duration: 0.7 }}
                 ></motion.div>
 
-                <video className='w-full h-full object-cover ' src={item.video ? item.video.url : ''} loop playsInline autoPlay muted></video>
+                <video className='w-full h-full object-cover ' loop playsInline autoPlay muted>
+                  <source data-src={item.video ? item.video.url : ''} />
+                </video>
               </div>
 
               <div className='flex flex-col gap-4 md:gap-6 lg:py-8 lg:px-12 relative'>

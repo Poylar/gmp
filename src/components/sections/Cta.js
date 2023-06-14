@@ -59,6 +59,7 @@ const Cta = ({ data }) => {
             {data.videos.map((item, index) => (
               <motion.div
                 variants={variants}
+                key={index}
                 initial={{
                   opacity: 0,
                   y: 50,

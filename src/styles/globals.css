@@ -42,9 +42,17 @@ html {
   }
 
   .text-gradient {
-    background: linear-gradient(90deg, #6366f1 0%, #ac54f1 100%);
+    background: linear-gradient(270deg, #ffffff 7.55%, #666a77 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-dark {
+    background: linear-gradient(270deg, #ffffff 7.55%, #666a77 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
   }
 
   .text-shadow {
@@ -116,6 +124,18 @@ html {
         transform-origin: 0% 50%;
         transform: scale3d(1, 1, 1);
       }
+    }
+  }
+
+  .accordion-item {
+    @apply border-b border-gray-700;
+    &__button {
+      @apply py-8 w-full text-left flex justify-between items-center text-2xl font-medium;
+    }
+    &__content-wrapper {
+      height: 0;
+      overflow: hidden;
+      transition: height ease 0.2s;
     }
   }
 }
