@@ -1,5 +1,4 @@
-import { getPageData } from '@/api/api';
-import { getMenu } from '@/api/getMenu';
+import { getMenu, getPageData } from '@/api/api';
 import Layout from '@/components/layout';
 import Sections from '@/components/sections';
 import Head from 'next/head';
@@ -24,12 +23,10 @@ const Page = ({ data, nav }) => {
 };
 
 export async function getStaticProps({ locale }) {
-  const data = await getPageData(locale, 'home');
-  const nav = await getMenu(locale);
   return {
     props: {
-      data,
-      nav,
+      data: await getPageData(locale, 'home'),
+      nav: await getMenu(locale),
     },
     revalidate: 1,
   };
