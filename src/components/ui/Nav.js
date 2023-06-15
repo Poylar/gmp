@@ -1,9 +1,7 @@
-import Link from 'next/link';
-
 const Nav = ({ nav }) => {
   return (
     <nav className='block'>
-      <ul className='flex flex-wrap items-center gap-10'>
+      {/* <ul className='flex flex-wrap items-center gap-10'>
         {nav.map((item) => {
           return (
             <li className='block' key={item.pagetitle}>
@@ -11,7 +9,7 @@ const Nav = ({ nav }) => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </nav>
   );
 };
