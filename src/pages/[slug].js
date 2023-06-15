@@ -13,7 +13,7 @@ const RenderBlock = ({ type, data }) => {
 const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
-      <Head>{data.pagetitle && <title>{data.pagetitle}</title>}</Head>
+      <Head>{data.pagetitle !== undefined ? <title>{data.pagetitle}</title> : null}</Head>
       {data.blocks.map((block, index) => (
         <RenderBlock key={index} data={block.values} type={block.chunk} />
       ))}
@@ -29,6 +29,7 @@ export async function getStaticProps({ params, locale }) {
       data,
       nav,
     },
+    revalidate: 1,
   };
 }
 
