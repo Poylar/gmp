@@ -13,7 +13,7 @@ const RenderBlock = ({ type, data }) => {
 const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
-      <Head>{typeof data !== undefined ? <title>{data.pagetitle}</title> : null}</Head>
+      <Head>{typeof data !== undefined ? <title>{data?.pagetitle}</title> : null}</Head>
       {data.blocks.map((block, index) => (
         <RenderBlock key={index} data={block.values} type={block.chunk} />
       ))}
@@ -24,6 +24,7 @@ const Page = ({ data, nav }) => {
 export async function getStaticProps({ params, locale }) {
   const data = await getPageData(locale, params.slug);
   const nav = await getMenu(locale);
+  console.log(data);
   return {
     props: {
       data,
