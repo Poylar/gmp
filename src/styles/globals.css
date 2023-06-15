@@ -8,12 +8,22 @@ html {
 }
 
 @layer base {
+  .prose {
+    --tw-prose-bullets: #4f46e5;
+  }
   .btn {
     @apply px-5 py-3;
     &--primary {
       @apply rounded-2xl bg-blue-600 font-medium text-white transition-colors;
       &:hover {
         @apply bg-blue-500;
+      }
+    }
+
+    &--secondary {
+      @apply rounded-2xl bg-white font-medium text-gray-950 transition-colors;
+      &:hover {
+        @apply bg-gray-400;
       }
     }
   }
@@ -42,9 +52,23 @@ html {
   }
 
   .text-gradient {
-    background: linear-gradient(270deg, #ffffff 7.55%, #666a77 100%);
+    background: linear-gradient(90deg, #6366f1 0%, #ac54f1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .bg-card-gradient {
+    @apply relative overflow-hidden;
+    &:before {
+      content: '';
+      width: 380px;
+      padding-bottom: 100px;
+      z-index: 1;
+      @apply block absolute -right-[12%] bottom-[41%];
+      background: conic-gradient(from 180deg at 50% 50%, #9330d0 0deg, rgba(79, 70, 229, 0) 360deg);
+      filter: blur(50px);
+      transform: rotate(-129.51deg);
+    }
   }
 
   .text-gradient-dark {

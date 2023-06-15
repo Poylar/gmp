@@ -1,13 +1,28 @@
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
-import VideoCircle from '../ui/VideoCircle';
+import { useState } from 'react';
+
+import Link from 'next/link';
+
+import Accordion from '@/components/ui/Accordion';
+import VideoCircle from '@/components/ui/VideoCircle';
+import clsx from 'clsx';
 
 const Skills = ({ data }) => {
   const splitedTitle = data.title.split(' ');
+  const [clicked, setClicked] = useState('0');
+  const handleToggle = (index) => {
+    if (clicked === index) {
+      return setClicked('0');
+    }
+
+    setClicked(index);
+  };
+
   return (
     <section className='section section--md bg-gray-100'>
       <div className='container'>
-        <div className='flex flex-col  items-center gap-6'>
+        <div className='flex flex-col mb-6 md:mb-8 items-center gap-6'>
           <VideoCircle data={data} className={'md:hidden'} />
           <h2 className='text-3xl md:text-6xl inline-flex justify-center gap-x-3 flex-wrap font-medium max-w-3xl text-center'>
             {splitedTitle.map((word, index) =>
@@ -16,7 +31,7 @@ const Skills = ({ data }) => {
           </h2>
         </div>
         <Tabs selectedTabClassName='is-selected'>
-          <TabList className={'flex gap-4 items-center justify-center'}>
+          <TabList className={'flex gap-4 items-center justify-center mb-16'}>
             {data.tabs.map((tab, index) => {
               return (
                 <Tab
@@ -32,16 +47,40 @@ const Skills = ({ data }) => {
           </TabList>
           {data.tabs.map((tab, index) => {
             return (
-              <TabPanel>
-                {tab.items.map((item, index) => {
-                  return (
-                    <div className='flex flex-col' key={index}>
-                      <h3 className='text-3xl'>{item.title}</h3>
-                      <p className='text-gray-700'>{item.description}</p>
-                    </div>
-                  );
-                })}
-              </TabPanel>
+              <>
+                <TabPanel key={index}>
+                  <div className='md:grid grid-cols-2 lg:grid-cols-3 gap-6'>
+                    {tab.items.map((item, index) => {
+                      return (
+                        <>
+                          <Accordion key={index} onToggle={() => handleToggle(index)} active={clicked === index} data={item} />
+                          <div
+                            className={clsx(
+                              'hidden md:flex flex-col justify-between p-8 border border-gray-400 rounded-3xl',
+                              index === tab.items.length - 1 ? 'bg-blue-500 text-white bg-card-gradient' : null
+                            )}
+                            key={index}
+                          >
+                            <h3 className='text-3xl mb-12 font-medium'>{item.title}</h3>
+                            <div
+                              className={clsx(
+                                'prose mt-auto mb-5 text-base relative',
+                                index === tab.items.length - 1 ? 'bg-blue-500 text-gray-200' : 'text-gray-700'
+                              )}
+                              dangerouslySetInnerHTML={{ __html: item.description }}
+                            />
+                            {item.button ? (
+                              <Link className='btn btn--secondary self-start' href={item.button.href}>
+                                {item.button.caption}
+                              </Link>
+                            ) : null}
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
+                </TabPanel>
+              </>
             );
           })}
         </Tabs>
