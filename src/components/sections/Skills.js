@@ -1,7 +1,5 @@
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
-import { useState } from 'react';
-
 import Link from 'next/link';
 
 import Accordion from '@/components/ui/Accordion';
@@ -10,14 +8,6 @@ import clsx from 'clsx';
 
 const Skills = ({ data }) => {
   const splitedTitle = data.title.split(' ');
-  const [clicked, setClicked] = useState('0');
-  const handleToggle = (index) => {
-    if (clicked === index) {
-      return setClicked('0');
-    }
-
-    setClicked(index);
-  };
 
   return (
     <section className='section section--md bg-gray-100'>
@@ -31,7 +21,7 @@ const Skills = ({ data }) => {
           </h2>
         </div>
         <Tabs selectedTabClassName='is-selected'>
-          <TabList className={'flex gap-4 items-center justify-center mb-16'}>
+          <TabList className={'flex gap-4 items-center justify-center mb-8 md:mb-16'}>
             {data.tabs.map((tab, index) => {
               return (
                 <Tab
@@ -45,37 +35,43 @@ const Skills = ({ data }) => {
               );
             })}
           </TabList>
-          {data.tabs.map((tab, index) => {
+          {data.tabs.map((tab, tabIndex) => {
             return (
               <>
-                <TabPanel key={index}>
-                  <div className='md:grid grid-cols-2 lg:grid-cols-3 gap-6'>
+                <TabPanel key={tabIndex}>
+                  <div className='md:grid grid-cols-2  lg:grid-cols-3 md:gap-6 gap-4 flex flex-col'>
+                    <Accordion
+                      wrapperClassNames={clsx('md:hidden flex flex-col gap-4')}
+                      activeClassNames={clsx('bg-white')}
+                      rootClassNames={clsx('border border-gray-400 transition-colors rounded-2xl last:hidden')}
+                      buttonClassNames={clsx('p-6')}
+                      contentClassNames={clsx('text-gray-700 pt-0 p-6')}
+                      onToggle={() => handleToggle(index)}
+                      data={tab.items}
+                    />
                     {tab.items.map((item, index) => {
                       return (
-                        <>
-                          <Accordion key={index} onToggle={() => handleToggle(index)} active={clicked === index} data={item} />
+                        <div
+                          className={clsx(
+                            'last-not-hidden  md:flex flex-col justify-between p-8 border border-gray-400 rounded-3xl',
+                            index === tab.items.length - 1 ? 'bg-blue-500 text-white bg-card-gradient' : null
+                          )}
+                          key={index}
+                        >
+                          <h3 className='text-3xl mb-12 font-medium'>{item.title}</h3>
                           <div
                             className={clsx(
-                              'hidden md:flex flex-col justify-between p-8 border border-gray-400 rounded-3xl',
-                              index === tab.items.length - 1 ? 'bg-blue-500 text-white bg-card-gradient' : null
+                              'prose mt-auto mb-5 text-base relative',
+                              index === tab.items.length - 1 ? 'bg-blue-500 text-gray-200' : 'text-gray-700'
                             )}
-                            key={index}
-                          >
-                            <h3 className='text-3xl mb-12 font-medium'>{item.title}</h3>
-                            <div
-                              className={clsx(
-                                'prose mt-auto mb-5 text-base relative',
-                                index === tab.items.length - 1 ? 'bg-blue-500 text-gray-200' : 'text-gray-700'
-                              )}
-                              dangerouslySetInnerHTML={{ __html: item.description }}
-                            />
-                            {item.button ? (
-                              <Link className='btn btn--secondary self-start' href={item.button.href}>
-                                {item.button.caption}
-                              </Link>
-                            ) : null}
-                          </div>
-                        </>
+                            dangerouslySetInnerHTML={{ __html: item.description }}
+                          />
+                          {item.button ? (
+                            <Link className='btn btn--secondary self-start' href={item.button.href}>
+                              {item.button.caption}
+                            </Link>
+                          ) : null}
+                        </div>
                       );
                     })}
                   </div>

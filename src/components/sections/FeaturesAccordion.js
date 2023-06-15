@@ -1,7 +1,8 @@
-import Accordion from '@/components/ui/Accordion';
 import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import { useState } from 'react';
 
+import Accordion from '@/components/ui/Accordion';
+import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -22,9 +23,11 @@ const FeaturesAccordion = ({ data }) => {
         <h2 className='text-3xl md:text-6xl text-gradient-dark md:text-center mb-8 md:mb-24 font-medium max-w-2xl md:mx-auto'>{data.title}</h2>
         <div className='grid md:grid-cols-2 gap-8 md:gap-0'>
           <div className='flex flex-col gap-2 md:pr-24'>
-            {data.items.map((item, index) => {
-              return <Accordion key={index} onToggle={() => handleToggle(index)} active={clicked === index} data={item} />;
-            })}
+            <Accordion
+              rootClassNames={clsx('border-b border-gray-700')}
+              contentClassNames={clsx('md:text-lg text-gray-200 pb-8')}
+              data={data.items}
+            />
           </div>
           <div className='relative'>
             {data.items.map(

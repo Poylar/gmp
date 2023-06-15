@@ -1,6 +1,14 @@
 import { motion } from 'framer-motion';
 
+import { headerThemeContext } from '@/context/headerThemeContext';
+import { useContext, useEffect } from 'react';
+
 const HeroMain = ({ data }) => {
+  const { theme, setTheme } = useContext(headerThemeContext);
+  useEffect(() => {
+    setTheme('dark');
+  }, []);
+
   const heroVariants = {
     initial: {
       borderBottomLeftRadius: '0px',

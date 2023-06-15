@@ -30,7 +30,7 @@ const Features = ({ data }) => {
                 ></motion.div>
 
                 <video className='w-full h-full object-cover ' loop playsInline autoPlay muted>
-                  <source data-src={item.video ? item.video.url : ''} />
+                  <source src={item.video ? item.video.url : ''} />
                 </video>
               </div>
 

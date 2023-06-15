@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --header--text: #fff;
+}
+
 html {
   font-family: 'arboria';
   font-size: 16px;
+  @apply antialiased bg-gray-100;
 }
 
 @layer base {
@@ -137,6 +142,13 @@ html {
     }
   }
 
+  .last-not-hidden {
+    @apply hidden;
+    &:last-child {
+      @apply flex;
+    }
+  }
+
   .link-hover {
     position: relative;
     white-space: nowrap;
@@ -162,7 +174,6 @@ html {
   }
 
   .accordion-item {
-    @apply border-b border-gray-700;
     &__button {
       @apply py-8 w-full px-2 text-left flex justify-between items-center text-2xl font-medium;
     }
@@ -170,6 +181,17 @@ html {
       height: 0;
       overflow: hidden;
       transition: height ease 0.2s;
+    }
+  }
+
+  .bg-dotted {
+    @apply relative overflow-hidden;
+    &:before {
+      content: '';
+      @apply absolute w-full h-full;
+      background-image: url('/bg-dotted.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   }
 }

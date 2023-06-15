@@ -1,8 +1,11 @@
 import About from '@/components/sections/About';
 import Benefits from '@/components/sections/Benefits';
+import Contacts from '@/components/sections/Contacts';
 import Cta from '@/components/sections/Cta';
 import Features from '@/components/sections/Features';
 import FeaturesAccordion from '@/components/sections/FeaturesAccordion';
+import Gallery from '@/components/sections/Gallery';
+import Hero from '@/components/sections/Hero';
 import HeroMain from '@/components/sections/HeroMain';
 import Manifest from '@/components/sections/Manifest';
 import Map from '@/components/sections/Map';
@@ -20,6 +23,9 @@ const Sections = {
   Manifest: Manifest,
   Accordion: FeaturesAccordion,
   Skills: Skills,
+  Contacts: Contacts,
+  Hero: Hero,
+  Gallery: Gallery,
 };
 
 export default Sections;
