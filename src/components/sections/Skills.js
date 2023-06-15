@@ -3,16 +3,17 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import VideoCircle from '../ui/VideoCircle';
 
 const Skills = ({ data }) => {
-  const splitedTitle = data.title.split(' ');
   return (
     <section className='section section--md bg-gray-100'>
       <div className='container'>
         <div className='flex flex-col  items-center gap-6'>
           <VideoCircle data={data} className={'md:hidden'} />
           <h2 className='text-3xl md:text-6xl inline-flex justify-center gap-x-3 flex-wrap font-medium max-w-3xl text-center'>
-            {splitedTitle.map((word, index) =>
-              index == 2 ? <VideoCircle className={'hidden md:inline-flex'} data={data} /> : <span>{word + ' '}</span>
-            )}
+            {data.title
+              .split(' ')
+              .map((word, index) =>
+                index === 2 ? <VideoCircle key={index} className={'hidden md:inline-flex'} data={data} /> : <span key={index}>{word + ' '}</span>
+              )}
           </h2>
         </div>
         <Tabs selectedTabClassName='is-selected'>
@@ -32,7 +33,7 @@ const Skills = ({ data }) => {
           </TabList>
           {data.tabs.map((tab, index) => {
             return (
-              <TabPanel>
+              <TabPanel key={index}>
                 {tab.items.map((item, index) => {
                   return (
                     <div className='flex flex-col' key={index}>

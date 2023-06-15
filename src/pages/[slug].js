@@ -1,5 +1,4 @@
-import { getAllPageIds, getPageData } from '@/api/api';
-import { getMenu } from '@/api/getMenu';
+import { getAllPageIds, getMenu, getPageData } from '@/api/api';
 import Layout from '@/components/layout';
 import Sections from '@/components/sections';
 import Head from 'next/head';
@@ -22,13 +21,10 @@ const Page = ({ data, nav }) => {
 };
 
 export async function getStaticProps({ params, locale }) {
-  const data = await getPageData(locale, params.slug);
-  const nav = await getMenu(locale);
-
   return {
     props: {
-      data,
-      nav,
+      data: await getPageData(locale, params.slug),
+      nav: await getMenu(locale),
     },
     revalidate: 1,
   };
@@ -36,17 +32,7 @@ export async function getStaticProps({ params, locale }) {
 
 export async function getStaticPaths({ locales }) {
   const paths = await Promise.all(
-    locales.map(async (locale) => {
-      const data = await getAllPageIds(locale);
-      return data.map((item) => {
-        return {
-          params: {
-            slug: item.alias,
-          },
-          locale,
-        };
-      });
-    })
+    locales.map((locale) => getAllPageIds(locale).then((ids) => ids.map((item) => ({ params: { slug: item.alias }, locale }))))
   );
 
   return {
