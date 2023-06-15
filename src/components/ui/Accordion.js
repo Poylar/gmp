@@ -15,7 +15,7 @@ const Accordion = ({ data, active, onToggle }) => {
         className='accordion-item__content-wrapper'
         style={active ? { height: contentEl.current.scrollHeight } : { height: '0px' }}
       >
-        <div className='accordion-item__content md:text-lg text-gray-200 pb-8' dangerouslySetInnerHTML={{ html: description }} />
+        <div className='accordion-item__content md:text-lg text-gray-200 pb-8' dangerouslySetInnerHTML={{ __html: description }} />
       </div>
     </div>
   );
