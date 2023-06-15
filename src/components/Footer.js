@@ -38,7 +38,7 @@ const Footer = () => {
           <div className='flex flex-1 max-w-4xl w-full'>
             <h4 className='text-[144px] font-medium leading-none'>Global Media Production</h4>
           </div>
-          <button className='w-32 h-32 flex rounded-full bg-blue-600 flex-none items-center justify-center group'>
+          <button className='w-32 h-32 flex rounded-full hover:bg-blue-500 transition-colors bg-blue-600 flex-none items-center justify-center group'>
             <ArrowLink className='text-white group-hover:-rotate-45 transition-transform' width='35' height='30' viewBox='0 0 16 14' />
           </button>
         </div>
