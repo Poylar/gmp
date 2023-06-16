@@ -51,7 +51,7 @@ const About = ({ data }) => {
             </SplitText>
           </motion.div>
         </AnimatePresence>
-        <Link href={`${data.button.href}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
+        <Link href={`${'/contacts'}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
           <span>{data.button.caption}</span>
         </Link>
       </motion.div>

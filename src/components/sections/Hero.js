@@ -6,7 +6,7 @@ import { useContext, useEffect } from 'react';
 const Hero = ({ data }) => {
   const { theme, setTheme } = useContext(headerThemeContext);
   useEffect(() => {
-    setTheme('white');
+    setTheme(data.theme);
   }, []);
   return (
     <section

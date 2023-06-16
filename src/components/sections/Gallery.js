@@ -19,7 +19,7 @@ const Gallery = ({ data }) => {
                     data.theme !== 'white' ? ' md:bg-[#161E2F] md:border border-gray-700' : ' md:bg-white md:border border-gray-200'
                   )}
                 >
-                  <Image className='mb-8 md:mb-56' src={imageUrlWrapper(item.logo.url)} width={200} height={44} />
+                  <Image className='mb-8 md:mb-56' src={imageUrlWrapper(item.logo.url)} width={200} height={44} alt='' />
                   <div className='flex flex-col gap-6'>
                     <h3 className='text-3xl md:text-5xl font-medium'>{item.title}</h3>
                     <div className='text-lg md:text-xl' dangerouslySetInnerHTML={{ __html: item.description }} />
@@ -43,12 +43,13 @@ const Gallery = ({ data }) => {
                     counter > 5 ? 'md:col-span-4' : ''
                   )}
                 >
-                  <Image className='h-full' src={imageUrlWrapper(item.image.url)} width={item.image.width} height={item.image.height} />
+                  <Image className='h-full' src={imageUrlWrapper(item.image.url)} width={item.image.width} height={item.image.height} alt='' />
                 </div>
               );
             } else if (item.description && !item.logo) {
               return (
                 <div
+                  key={index}
                   className={clsx(
                     'col-span-12 md:col-span-4 max-md:order-5  py-8 md:p-12 rounded-3xl',
                     data.theme !== 'white' ? 'md:bg-[#161E2F] text-white md:border border-gray-700' : ' md:bg-white md:border border-gray-200'

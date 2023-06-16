@@ -10,10 +10,11 @@ const Contacts = ({ data }) => {
         <div className='grid md:grid-cols-2 gap-4 max-w-4xl mx-auto'>
           {data.items.map((item, index) => {
             return (
-              <div className='flex flex-col  w-full pb-[90%] rounded-3xl overflow-hidden relative'>
+              <div key={index} className='flex flex-col  w-full pb-[90%] rounded-3xl overflow-hidden relative'>
                 <Image
                   width={400}
                   height={400}
+                  alt=''
                   src={imageUrlWrapper(item.image.url)}
                   className='absolute inset-0 w-full opacity-30  h-full object-cover'
                 />

@@ -161,7 +161,7 @@ const Footer = () => {
               {socials.map((item, index) => {
                 const Icon = item.component;
                 return (
-                  <a href={item.link} aria-label={item.name} title={item.name} target='_blank' className='group flex items-center'>
+                  <a href={item.link} key={index} aria-label={item.name} title={item.name} target='_blank' className='group flex items-center'>
                     <Icon className='transition-colors text-gray-500 group-hover:text-gray-950' />
                   </a>
                 );

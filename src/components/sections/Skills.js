@@ -2,6 +2,8 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 import Link from 'next/link';
 
+import React from 'react';
+
 import Accordion from '@/components/ui/Accordion';
 import VideoCircle from '@/components/ui/VideoCircle';
 import clsx from 'clsx';
@@ -16,7 +18,7 @@ const Skills = ({ data }) => {
           <VideoCircle data={data} className={'md:hidden'} />
           <h2 className='text-3xl md:text-6xl inline-flex justify-center gap-x-3 flex-wrap font-medium max-w-3xl text-center'>
             {splitedTitle.map((word, index) =>
-              index == 2 ? <VideoCircle className={'hidden md:inline-flex'} data={data} /> : <span>{word + ' '}</span>
+              index == 2 ? <VideoCircle key={index} className={'hidden md:inline-flex'} data={data} /> : <span key={index}>{word + ' '}</span>
             )}
           </h2>
         </div>
@@ -37,7 +39,7 @@ const Skills = ({ data }) => {
           </TabList>
           {data.tabs.map((tab, tabIndex) => {
             return (
-              <>
+              <React.Fragment key={tabIndex}>
                 <TabPanel key={tabIndex}>
                   <div className='md:grid grid-cols-2  lg:grid-cols-3 md:gap-6 gap-4 flex flex-col'>
                     <Accordion
@@ -52,11 +54,11 @@ const Skills = ({ data }) => {
                     {tab.items.map((item, index) => {
                       return (
                         <div
+                          key={index}
                           className={clsx(
                             'last-not-hidden  md:flex flex-col justify-between p-8 border border-gray-400 rounded-3xl',
                             index === tab.items.length - 1 ? 'bg-blue-500 text-white bg-card-gradient' : null
                           )}
-                          key={index}
                         >
                           <h3 className='text-3xl mb-12 font-medium'>{item.title}</h3>
                           <div
@@ -76,7 +78,7 @@ const Skills = ({ data }) => {
                     })}
                   </div>
                 </TabPanel>
-              </>
+              </React.Fragment>
             );
           })}
         </Tabs>
