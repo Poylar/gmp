@@ -7,7 +7,7 @@ import Corner from '/public/corner.svg';
 const Features = ({ data }) => {
   return (
     <section className='section section--lg bg-gradient-dark text-gray-50'>
-      <div className='flex flex-col gap-14 md:gap-32 container'>
+      <div className='flex flex-col  gap-14 md:gap-32 container'>
         {data.items.map((item, index) => {
           const isEven = index % 2 === 0;
           const cornerPositionTop = !isEven ? 'right-0 rotate-90' : 'left-0 rotate-270';
@@ -16,8 +16,8 @@ const Features = ({ data }) => {
           return (
             <motion.div
               key={index}
-              className={clsx('flex flex-col gap-8 items-center md:gap-16 lg:flex-row', {
-                'lg:flex-row-reverse': isEven,
+              className={clsx('flex flex-col gap-8 xl:items-center md:gap-16 xl:flex-row', {
+                'xl:flex-row-reverse': isEven,
               })}
             >
               <div className='flex max-w-3xl rounded-3xl aspect-16/9 object-cover overflow-hidden lg:flex-grow-[1] flex-shrink-0 relative'>

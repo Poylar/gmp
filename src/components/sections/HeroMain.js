@@ -1,14 +1,14 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
-import { headerThemeContext } from '@/context/headerThemeContext';
+import { useHeaderTheme } from '@/context/headerThemeContext';
 import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const HeroMain = ({ data }) => {
-  const { theme, setTheme } = useContext(headerThemeContext);
+  const { currentTheme, changeTheme } = useHeaderTheme();
 
   useEffect(() => {
-    setTheme('dark');
+    changeTheme('dark');
   }, []);
 
   const ref = useRef(null);
