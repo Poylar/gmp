@@ -9,10 +9,10 @@ const About = ({ data }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start center', 'center start'],
+    offset: ['start center', 'center center'],
   });
   const spring = useSpring(scrollYProgress, { damping: 100, stiffness: 1000 });
-  const scale = useTransform(spring, [0, 1], [0.5, 4]);
+  const scale = useTransform(spring, [0, 1], [0.1, 1]);
   return (
     <section className='section section--lg overflow-hidden' ref={ref}>
       <motion.div

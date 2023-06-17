@@ -1,15 +1,18 @@
-const Opengraph = () => {
+const Opengraph = ({ data }) => {
+  const { og_title, og_description, og_image, og_image_alt, og_locale, og_locale_alternate, og_site_name } = data;
   return (
     <>
       <meta property='og:type' content='website' />
-      <meta property='og:url' content='https://www.ogp.me/' />
-      <meta property='og:title' content='Open Graph protocol' />
-      <meta property='og:description' content='The Open Graph protocol enables any web page to become a rich object in a social graph.' />
-      <meta property='og:image' content='https://ogp.me/logo.png' />
-      <meta property='og:image:alt' content='The Open Graph logo' />
-      <meta property='og:locale' content='en_US' />
-      <meta property='og:locale:alternate' content='de' />
-      <meta property='og:site_name' content='Open Graph protocol' />
+      <meta property='og:title' content={og_title} />
+      <meta property='og:description' content={og_description} />
+      <meta property='og:image' content={'https://gmp.einzelwerk.io/assets/images/aboutus-1.jpg'} />
+      <meta property='og:image:alt' content={og_image_alt} />
+      <meta property='og:image:width' content='1200' />
+
+      <meta property='og:image:height' content='630' />
+      <meta property='og:locale' content={og_locale} />
+      <meta property='og:locale:alternate' content={og_locale_alternate} />
+      <meta property='og:url' content={og_site_name} />
     </>
   );
 };

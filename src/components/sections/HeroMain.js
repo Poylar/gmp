@@ -1,6 +1,7 @@
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 import { headerThemeContext } from '@/context/headerThemeContext';
+import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import { useContext, useEffect, useRef } from 'react';
 
 const HeroMain = ({ data }) => {
@@ -42,7 +43,7 @@ const HeroMain = ({ data }) => {
       className='section relative min-h-screen overflow-hidden  text-white'
     >
       <motion.video className='blackout absolute inset-0 -z-10 h-full  w-full object-cover' autoPlay muted loop>
-        <source src={data.video.url} type='video/mp4' />
+        <source src={imageUrlWrapper(data.video.url)} type='video/mp4' />
       </motion.video>
       <div className='absolute flex top-0 h-full w-full font-[350] items-center justify-center text-white'>
         <div className='flex max-w-3xl flex-col items-center gap-6'>

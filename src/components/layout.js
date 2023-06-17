@@ -1,8 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import Opengraph from '@/components/meta/Opengraph';
 import { motion } from 'framer-motion';
-import Head from 'next/head';
 
 const Layout = ({ children, nav, pageContext }) => {
   return (
@@ -15,9 +13,6 @@ const Layout = ({ children, nav, pageContext }) => {
       }}
       className='flex min-h-screen flex-col justify-between text-gray-950'
     >
-      <Head>
-        <Opengraph />
-      </Head>
       <div className='flex-1 '>
         <Header nav={nav} />
         <div>{children}</div>

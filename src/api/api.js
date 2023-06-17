@@ -1,8 +1,4 @@
-import ky from 'ky';
-
-const client = ky.create({
-  prefixUrl: process.env.NEXT_PUBLIC_BACKEND_API_URL,
-});
+import client from './client';
 
 export async function getPageData(lang, slug) {
   try {

@@ -17,7 +17,12 @@ const Hero = ({ data }) => {
     >
       <div className='flex flex-col items-center gap-6 pt-60 pb-44 max-w-3xl mx-auto'>
         <h1 className='text-4xl md:text-7xl text-center font-medium'>{data.title}</h1>
-        {data.description && <div className='text-gray-700 text-lg md:text-xl text-center' dangerouslySetInnerHTML={{ __html: data.description }} />}
+        {data.description && (
+          <div
+            className={clsx('text-lg md:text-xl text-center', data.theme === 'white' ? 'text-gray-700' : 'text-gray-200')}
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          />
+        )}
       </div>
     </section>
   );

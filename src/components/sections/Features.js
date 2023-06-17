@@ -14,7 +14,7 @@ const Features = ({ data }) => {
           const cornerPositionBottom = !isEven ? 'left-0 -rotate-90' : 'right-0 rotate-180';
 
           return (
-            <div
+            <motion.div
               key={index}
               className={clsx('flex flex-col gap-8 items-center md:gap-16 lg:flex-row', {
                 'lg:flex-row-reverse': isEven,
@@ -38,14 +38,18 @@ const Features = ({ data }) => {
                 <Corner className={clsx('hidden lg:block absolute top-0', cornerPositionTop)} />
                 <Corner className={clsx('hidden lg:block absolute bottom-0', cornerPositionBottom)} />
 
-                <h2 className='text-3xl md:text-5xl font-medium'>{item.title}</h2>
-                <p className='text-xl md:text-lg'>{item.description}</p>
+                <motion.h2 initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} className='text-3xl md:text-5xl font-medium'>
+                  {item.title}
+                </motion.h2>
+                <motion.p initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} className='text-xl md:text-lg'>
+                  {item.description}
+                </motion.p>
                 <Link href={`${item.button?.href}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
                   <span>{item.button.caption}</span>
                   <Arrow className='text-blue-500 transition-transform group-hover:translate-x-1' />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>

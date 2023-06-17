@@ -56,6 +56,10 @@ html {
     background: linear-gradient(180deg, #111827 0%, #1f293e 100%);
   }
 
+  .bg-checked {
+    background: url('/checked.svg') no-repeat center center;
+  }
+
   .text-gradient {
     background: linear-gradient(90deg, #6366f1 0%, #ac54f1 100%);
     -webkit-background-clip: text;

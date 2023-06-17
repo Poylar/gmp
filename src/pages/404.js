@@ -18,9 +18,6 @@ const Page = ({ data, nav }) => {
         <title>{data.pagetitle}</title>
         <Opengraph data={data.seo} />
       </Head>
-      {data.blocks.map((block, index) => (
-        <RenderBlock key={index} data={block.values} type={block.chunk} />
-      ))}
     </Layout>
   );
 };

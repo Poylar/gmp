@@ -1,8 +1,12 @@
-export async function getLangs() {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_BACKEND_API_URL}/languages`
-	)
-	const langs = await response.json()
+import client from './client';
 
-	return langs
+export async function getLangs() {
+  try {
+    const response = await client.get(`/languages`).json();
+    return response;
+  } catch (error) {
+    // Обработка ошибок
+    console.error('Ошибка при получении данных языков:', error);
+    throw error;
+  }
 }
