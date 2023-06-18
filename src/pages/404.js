@@ -15,7 +15,7 @@ const Page = ({ data, nav }) => {
   return (
     <Layout nav={nav}>
       <Head>
-        <title>{data.pagetitle}</title>
+        <title>404</title>
         <Opengraph data={data.seo} />
       </Head>
     </Layout>

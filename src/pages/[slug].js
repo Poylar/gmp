@@ -1,6 +1,6 @@
-import { getAllPageIds, getPageData } from '@/api/api';
-import { getMenu } from '@/api/getMenu';
+import { getAllPageIds, getGlobalData, getPageData } from '@/api/api';
 import Layout from '@/components/layout';
+import Opengraph from '@/components/meta/Opengraph';
 import Sections from '@/components/sections';
 import Head from 'next/head';
 
@@ -10,10 +10,13 @@ const RenderBlock = ({ type, data }) => {
   return <Component data={data} />;
 };
 
-const Page = ({ data, nav }) => {
+const Page = ({ data, globalProps }) => {
   return (
-    <Layout nav={nav !== undefined ? nav : null}>
-      <Head>{typeof data !== undefined ? <title>{data?.pagetitle}</title> : null}</Head>
+    <Layout globalProps={globalProps}>
+      <Head>
+        <title>{data.pagetitle}</title>
+        <Opengraph data={data.seo} />
+      </Head>
       {data?.blocks.map((block, index) => (
         <RenderBlock key={index} data={block.values} type={block.chunk} />
       ))}
@@ -23,12 +26,12 @@ const Page = ({ data, nav }) => {
 
 export async function getStaticProps({ params, locale }) {
   const data = await getPageData(locale, params.slug);
-  const nav = await getMenu(locale);
+  const globalProps = await getGlobalData(locale);
 
   return {
     props: {
       data,
-      nav,
+      globalProps,
     },
     revalidate: 1,
   };
@@ -38,13 +41,25 @@ export async function getStaticPaths({ locales }) {
   const paths = await Promise.all(
     locales.map(async (locale) => {
       const data = await getAllPageIds(locale);
-      return data.map((item) => {
-        return {
-          params: {
-            slug: item.alias,
-          },
-          locale,
-        };
+      return data.flatMap((item) => {
+        if (item.resources) {
+          return item.resources.map((resource) => {
+            console.log(resource.alias);
+            return {
+              params: {
+                slug: resource.alias,
+              },
+              locale,
+            };
+          });
+        } else {
+          return {
+            params: {
+              slug: item.alias,
+            },
+            locale,
+          };
+        }
       });
     })
   );

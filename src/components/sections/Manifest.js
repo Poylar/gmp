@@ -1,7 +1,6 @@
 import VideoPlayer from '../ui/VideoPlayer';
 
 const Manifest = ({ data }) => {
-  console.log(data);
   return (
     <section className='section section--md'>
       <div className='container'>

@@ -1,3 +1,4 @@
+import { useGlobalData } from '@/context/GlobalDataContext';
 import Link from 'next/link';
 import LangDropdown from './ui/LangDropdown';
 import ArrowLink from '/public/arrow-link.svg';
@@ -6,31 +7,18 @@ import linkedin from '/public/socials/linkedin.svg';
 import twitter from '/public/socials/twitter.svg';
 import youtube from '/public/socials/youtube.svg';
 
-const socials = [
-  {
-    name: 'Instagram',
-    link: 'https://www.instagram.com/globalmediaproduction/',
-    component: instagram,
-  },
+const Footer = () => {
+  const { globalData } = useGlobalData();
 
-  {
-    name: 'Linkedin',
-    link: 'https://www.linkedin.com/company/global-media-production/',
-    component: linkedin,
-  },
-  {
-    name: 'Twitter',
-    link: 'https://twitter.com/GMP_Berlin',
-    component: twitter,
-  },
-  {
-    name: 'Youtube',
-    link: 'https://www.youtube.com/channel/UC4QX6Z3Z2Z3Z2Z3Z2Z3Z2Z3Z',
-    component: youtube,
-  },
-];
+  const SocialsIcons = {
+    instagram: instagram,
+    linkedin: linkedin,
+    twitter: twitter,
+    youtube: youtube,
+  };
 
-const Footer = ({ nav }) => {
+  const socials = globalData?.socials;
+
   return (
     <footer className='pt-20 pb-12 overflow-hidden bg-gray-100 footer'>
       <div className='container relative flex flex-col z-10'>
@@ -51,9 +39,9 @@ const Footer = ({ nav }) => {
               <h5 className='text-gray-700'>Structure</h5>
               <nav className='mb-5'>
                 <ul className='grid grid-cols-2 gap-y-2 gap-x-16'>
-                  {nav?.map((item) => {
+                  {globalData?.menu?.map((item, index) => {
                     return (
-                      <li className='text-gray-950'>
+                      <li className='text-gray-950' key={index}>
                         <Link className='link-hover' href={item.uri}>
                           {item.pagetitle}
                         </Link>
@@ -66,94 +54,40 @@ const Footer = ({ nav }) => {
             <LangDropdown />
           </div>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-10'>
-            <div className='flex flex-col gap-5'>
-              <h5 className='text-gray-700'>Berlin</h5>
-              <nav>
-                <ul className='grid  gap-y-2 gap-x-16'>
-                  <li className='text-gray-950'>
-                    <a className='link-hover' href='/'>
-                      berlin@gmp.de
-                    </a>
-                  </li>
-                  <li className='text-gray-950'>
-                    <a className='link-hover' href='/'>
-                      +49 123 4567
-                    </a>
-                  </li>
-                  <li className='text-gray-950'>
-                    <address>8880 Cali Shores, Berlin, Germany</address>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <h5 className='text-gray-700'>Singapore</h5>
-              <nav>
-                <ul className='grid  gap-y-2 gap-x-16'>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      singapore@gmp.de
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      +65 123 4567
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <address>4229 Stracke Park, Singapore, Singapore</address>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <h5 className='text-gray-700'>London</h5>
-              <nav>
-                <ul className='grid  gap-y-2 gap-x-16'>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      london@gmp.de
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      +44 123 4567
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <address>43828 Reginald Ridges, London, United Kingdom</address>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <div className='flex flex-col gap-5'>
-              <h5 className='text-gray-700'>Dubai</h5>
-              <nav>
-                <ul className='grid  gap-y-2 gap-x-16'>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      dubai@gmp.de
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <Link className='link-hover' href='/'>
-                      +971 123 4567
-                    </Link>
-                  </li>
-                  <li className='text-gray-950'>
-                    <address>58244 McCullough Expressway, Dubai, UAE</address>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+            {globalData?.contacts?.map((item, index) => {
+              return (
+                <div className='flex flex-col gap-5' key={index}>
+                  <h5 className='text-gray-700'>{item.title}</h5>
+                  <nav>
+                    <ul className='grid  gap-y-2 gap-x-16'>
+                      <li className='text-gray-950'>
+                        <a className='link-hover' href={`mailto:${item.email}`}>
+                          {item.email}
+                        </a>
+                      </li>
+                      <li className='text-gray-950'>
+                        <a className='link-hover' href={`tel:${item.phone.replace(/\s/g, '')}`}>
+                          {item.phone}
+                        </a>
+                      </li>
+                      <li className='text-gray-950'>
+                        <address>{item.address}</address>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className='flex flex-col-reverse md:flex-row gap-6 md:gap-0 justify-between'>
           <div className='flex flex-col-reverse md:flex-row md:items-center gap-8 md:gap-6'>
-            <span className='text-gray-500'>GMP © 2023</span>
+            <span className='text-gray-500'>
+              {globalData?.copyright} © {new Date(Date.now()).getFullYear()}
+            </span>
             <div className='flex items-center gap-3'>
-              {socials.map((item, index) => {
-                const Icon = item.component;
+              {socials?.map((item, index) => {
+                const Icon = SocialsIcons[item.name];
                 return (
                   <a href={item.link} key={index} aria-label={item.name} title={item.name} target='_blank' className='group flex items-center'>
                     <Icon className='transition-colors text-gray-500 group-hover:text-gray-950' />
@@ -164,21 +98,15 @@ const Footer = ({ nav }) => {
           </div>
           <nav>
             <ul className='flex gap-5'>
-              <li>
-                <Link className='link-hover' href='/'>
-                  Impressum
-                </Link>
-              </li>
-              <li>
-                <Link className='link-hover' href='/'>
-                  Datenschutz
-                </Link>
-              </li>
-              <li>
-                <Link className='link-hover' href='/'>
-                  Cookies erstellung
-                </Link>
-              </li>
+              {globalData?.footer?.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <Link className='link-hover' href={`/${item.uri}`}>
+                      {item.pagetitle}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

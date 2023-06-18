@@ -1,8 +1,14 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { useGlobalData } from '@/context/GlobalDataContext';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
-const Layout = ({ children, nav, pageContext }) => {
+const Layout = ({ children, globalProps, pageContext }) => {
+  const { changeGlobalData } = useGlobalData();
+  useEffect(() => {
+    changeGlobalData(globalProps);
+  });
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -14,9 +20,9 @@ const Layout = ({ children, nav, pageContext }) => {
       className='flex min-h-screen flex-col justify-between text-gray-950'
     >
       <div className='flex-1 '>
-        <Header nav={nav} />
+        <Header />
         <div>{children}</div>
-        <Footer nav={nav} />
+        <Footer />
       </div>
     </motion.div>
   );

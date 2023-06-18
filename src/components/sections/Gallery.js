@@ -10,7 +10,7 @@ const Gallery = ({ data }) => {
       <div className='container'>
         <div className='grid md:grid-cols-12 gap-5'>
           {data.items.map((item, index) => {
-            if (item.logo) {
+            if (item.logo !== null) {
               return (
                 <div
                   key={index}
@@ -26,13 +26,13 @@ const Gallery = ({ data }) => {
                   </div>
                 </div>
               );
-            } else if (item.video) {
+            } else if (item.video !== null) {
               return (
                 <div key={index} className='max-md:-order-1 col-span-12 md:col-span-7'>
                   <VideoPlayer src={item.video ? item.video.url : ''} />
                 </div>
               );
-            } else if (item.image) {
+            } else if (item.image !== null) {
               counter++;
               return (
                 <div
@@ -46,7 +46,7 @@ const Gallery = ({ data }) => {
                   <Image className='h-full' src={imageUrlWrapper(item.image.url)} width={item.image.width} height={item.image.height} alt='' />
                 </div>
               );
-            } else if (item.description && !item.logo) {
+            } else if (item.description !== null && !item.logo !== null) {
               return (
                 <div
                   key={index}

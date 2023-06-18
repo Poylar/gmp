@@ -1,12 +1,10 @@
 import { SplitText } from '@/scripts/splitText';
-import { useAnimate, useInView } from 'framer-motion';
-import { useEffect } from 'react';
-import { ComposableMap, Geographies, Geography, Line, Marker } from 'react-simple-maps';
+import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
+import MotionLineComponent from '../ui/MotionLineComponent';
 
 const geoUrl = 'https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries-sans-antarctica.json';
 
 const Map = ({ data }) => {
-  console.log(data);
   const markers = [
     {
       markerOffsetY: -15,
@@ -31,30 +29,8 @@ const Map = ({ data }) => {
     },
   ];
 
-  const [scope, animate] = useAnimate();
-  const inView = useInView(scope);
   const markerCoordinates = markers.map(({ coordinates }) => coordinates);
-  useEffect(() => {
-    if (inView) {
-      const animation = async () => {
-        await animate(scope.current, {
-          rotate: [0, 0, 0],
-        });
-        animate(
-          '.rsm-line',
-          {
-            pathLength: [0, 1],
-            opacity: [0, 1],
-          },
-          {
-            duration: 3,
-          }
-        );
-      };
 
-      animation();
-    }
-  }, [inView]);
   return (
     <div className='w-full h-[800px] relative'>
       <div className='absolute z-10 text-gray-50 container inset-x-0 md:top-32'>
@@ -77,7 +53,6 @@ const Map = ({ data }) => {
         </h2>
       </div>
       <ComposableMap
-        ref={scope}
         className='bg-gray-900 w-full h-full map'
         projectionConfig={{
           rotate: [0, 0, 0],
@@ -100,7 +75,8 @@ const Map = ({ data }) => {
             ))
           }
         </Geographies>
-        <Line coordinates={markerCoordinates} stroke='#6366F1' strokeWidth={1.5} strokeLinecap='round' />
+        <MotionLineComponent coordinates={markerCoordinates} stroke='#6366F1' strokeWidth={1.5} strokeLinecap='round' />
+
         {markers.map(({ name, coordinates, markerOffsetY, markerOffsetX = 0 }) => (
           <Marker key={name} coordinates={coordinates}>
             <circle r={5} fill='#6366F1' stroke='#fff' strokeWidth={2} />

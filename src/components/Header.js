@@ -21,7 +21,6 @@ const Header = ({ nav }) => {
   }, [router.asPath]);
 
   const handleChange = () => {
-    console.log(menu);
     setMenu((prev) => !prev);
   };
 
@@ -35,7 +34,7 @@ const Header = ({ nav }) => {
         )}
       >
         <Logo className='justify-self-start flex-none' />
-        <Nav nav={nav} />
+        <Nav />
         <div className='flex gap-1 md:gap-2 justify-self-end'>
           <div className='flex-none'>
             <LangDropdown />
