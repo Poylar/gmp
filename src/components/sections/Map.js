@@ -1,9 +1,12 @@
+import { SplitText } from '@/scripts/splitText';
 import { useAnimate, useInView } from 'framer-motion';
 import { useEffect } from 'react';
 import { ComposableMap, Geographies, Geography, Line, Marker } from 'react-simple-maps';
+
 const geoUrl = 'https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries-sans-antarctica.json';
 
-const Map = () => {
+const Map = ({ data }) => {
+  console.log(data);
   const markers = [
     {
       markerOffsetY: -15,
@@ -53,7 +56,26 @@ const Map = () => {
     }
   }, [inView]);
   return (
-    <div className='w-full h-[800px]'>
+    <div className='w-full h-[800px] relative'>
+      <div className='absolute z-10 text-gray-50 container inset-x-0 md:top-32'>
+        <h2 className='text-4xl md:text-5xl font-medium max-w-md ml-auto'>
+          <SplitText
+            initial={{ y: '100%' }}
+            whileInView='visible'
+            viewport={{ threshold: 0.5 }}
+            variants={{
+              visible: (i) => ({
+                y: 0,
+                transition: {
+                  delay: i * 0.1,
+                },
+              }),
+            }}
+          >
+            {data.title}
+          </SplitText>
+        </h2>
+      </div>
       <ComposableMap
         ref={scope}
         className='bg-gray-900 w-full h-full map'
@@ -88,7 +110,7 @@ const Map = () => {
               x={markerOffsetX}
               filter='url(#solid)'
               fill='white'
-              className='text-md text-white'
+              className='text-lg text-white'
               fontSize={16}
               fontWeight={500}
             >

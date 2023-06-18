@@ -9,17 +9,17 @@ const About = ({ data }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start center', 'center center'],
+    offset: ['start 80%', 'center center'],
   });
   const spring = useSpring(scrollYProgress, { damping: 100, stiffness: 1000 });
-  const scale = useTransform(spring, [0, 1], [0.1, 1]);
+  const scale = useTransform(spring, [0, 1], [0.1, 1.2]);
   return (
     <section className='section section--lg overflow-hidden' ref={ref}>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        className='flex flex-col items-center py-48 relative max-w-5xl mx-auto font-medium'
+        className='flex flex-col items-center py-5 md:py-24 lg:py-48 relative max-w-5xl mx-auto font-medium'
       >
         <motion.div className='absolute inset-x-0 top-0 w-full h-full -z-10 ' style={{ scale }}>
           <Player className='absolute w-full h-full inset-0' autoplay loop src='/lottie/data.json'></Player>
@@ -37,7 +37,7 @@ const About = ({ data }) => {
               initial={{ y: '100%' }}
               whileInView='visible'
               viewport={{ once: true }}
-              className='text-2xl md:text-6xl text-center text-shadow'
+              className='text-2xl sm:text-4xl lg:text-6xl text-center text-shadow'
               variants={{
                 visible: (i) => ({
                   y: 0,
@@ -51,7 +51,7 @@ const About = ({ data }) => {
             </SplitText>
           </motion.div>
         </AnimatePresence>
-        <Link href={`${'/contacts'}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
+        <Link href={`${'/about'}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>
           <span>{data.button.caption}</span>
         </Link>
       </motion.div>

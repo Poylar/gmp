@@ -1,24 +1,24 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
-const headerThemeContext = createContext('dark'); // default theme there
+const headerThemeContext = createContext(['dark', (n) => {}]); // default theme there
 
 export const HeaderThemeProvider = ({ children }) => {
-  const { currentTheme } = useHeaderTheme();
-  const [theme, setTheme] = useState(currentTheme);
+  const theme = useContext(headerThemeContext);
 
-  useEffect(() => {
-    setTheme(currentTheme);
-  }, [currentTheme]);
+  const [themeState, setThemeState] = useState(theme);
 
-  return <headerThemeContext.Provider value={theme}>{children}</headerThemeContext.Provider>;
+  return <headerThemeContext.Provider value={[themeState, setThemeState]}>{children}</headerThemeContext.Provider>;
 };
 
 export const useHeaderTheme = () => {
-  const themeContextData = useContext(headerThemeContext);
-  const [localTheme, setLocalTheme] = useState(themeContextData);
+  const [currentTheme, setCurrentTheme] = useContext(headerThemeContext);
+
+  const changeTheme = (newTheme) => {
+    setCurrentTheme(newTheme);
+  };
 
   return {
-    currentTheme: localTheme,
-    changeTheme: (newTheme) => setLocalTheme(newTheme),
+    currentTheme: currentTheme,
+    changeTheme: changeTheme,
   };
 };

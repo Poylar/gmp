@@ -16,7 +16,7 @@ const Layout = ({ children, nav, pageContext }) => {
       <div className='flex-1 '>
         <Header nav={nav} />
         <div>{children}</div>
-        <Footer />
+        <Footer nav={nav} />
       </div>
     </motion.div>
   );

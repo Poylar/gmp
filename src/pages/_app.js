@@ -4,7 +4,6 @@ import '@/styles/globals.css';
 import { AnimatePresence } from 'framer-motion';
 
 export default function App({ Component, pageProps }) {
-  console.log(pageProps);
   return (
     <AnimatePresence initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
       <HeaderThemeProvider>

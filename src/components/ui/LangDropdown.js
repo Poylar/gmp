@@ -28,7 +28,7 @@ const LangDropdown = ({ className }) => {
   };
   return (
     <div className='relative flex flex-col self-start ' ref={dropdownRef}>
-      <button className='flex items-center gap-3 rounded-2xl border border-gray-500 px-5 py-3' onClick={toggleDropdown}>
+      <button className='flex items-center gap-3 rounded-2xl border border-gray-500 px-3 md:px-5 py-2 md:py-3' onClick={toggleDropdown}>
         <Image src={'/' + locale + '.svg'} width={24} height={24} alt='' className='overflow-hidden rounded-full' />
         <span className='capitalize'>{locale}</span>
         <ArrowDown width={20} height={20} alt='' className={'transition-transform' + (dropDown ? ' rotate-180' : '')} />

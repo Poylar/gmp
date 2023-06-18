@@ -19,8 +19,8 @@ const Cta = ({ data }) => {
   return (
     <section className='section rounded-bl-[60px] rounded-br-[60px] overflow-hidden'>
       <div className='container'>
-        <div className='flex flex-col items-center gap-12'>
-          <div className='flex flex-col gap-6'>
+        <div className='flex flex-col items-center gap-8 md:gap-12'>
+          <div className='flex flex-col items-center gap-4 md:gap-6'>
             <motion.h2
               initial={{
                 opacity: 0,
@@ -72,7 +72,7 @@ const Cta = ({ data }) => {
                     delay: index * 0.2,
                   },
                 }}
-                className='flex w-32 h-32 rounded-full overflow-hidden flex-1 -mr-3 last:mr-0 border-4 border-white'
+                className='flex w-20 md:w-32 h-20 md:h-32 rounded-full overflow-hidden flex-1 -mr-3 last:mr-0 border-4 border-white'
               >
                 <video className='w-full h-full object-cover' autoPlay muted loop>
                   <source src={item.url} />
@@ -80,7 +80,7 @@ const Cta = ({ data }) => {
               </motion.div>
             ))}
           </div>
-          <Link className='py-5 px-8 btn btn--primary' href='/contacts'>
+          <Link className='py-5 w-full md:w-auto text-center text-lg px-8 btn btn--primary' href='/contacts'>
             Get in touch
           </Link>
         </div>

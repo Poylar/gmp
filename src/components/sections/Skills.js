@@ -28,7 +28,7 @@ const Skills = ({ data }) => {
               return (
                 <Tab
                   className={
-                    'py-4 px-8 border text-md font-medium border-gray-400 transition-colors cursor-pointer [&.is-selected]:bg-white [&.is-selected]:border-blue-600 rounded-2xl'
+                    'py-4 px-8 border text-lg font-medium border-gray-400 transition-colors cursor-pointer [&.is-selected]:bg-white [&.is-selected]:border-blue-600 rounded-2xl'
                   }
                   key={index}
                 >

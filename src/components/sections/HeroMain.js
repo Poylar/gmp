@@ -20,27 +20,14 @@ const HeroMain = ({ data }) => {
   const y = useTransform(spring, [0, 1], [0, -200]);
   const opacity = useTransform(spring, [0, 1], [1, 0]);
 
-  const heroVariants = {
-    initial: {
-      borderBottomLeftRadius: '0px',
-      borderBottomRightRadius: '0px',
-    },
-    animate: {
-      borderBottomLeftRadius: '60px',
-      borderBottomRightRadius: '60px',
-    },
-  };
   return (
     <motion.section
-      variants={heroVariants}
-      initial='initial'
-      whileInView='animate'
       ref={ref}
       viewport={{
         margin: '0px 0px 100%',
         amount: 0,
       }}
-      className='section relative min-h-screen overflow-hidden  text-white'
+      className='section relative rounded-bl-3xl md:rounded-bl-[60px] rounded-br-3xl md:rounded-br-[60px] min-h-[500px] md:min-h-screen overflow-hidden  text-white'
     >
       <motion.video className='blackout absolute inset-0 -z-10 h-full  w-full object-cover' autoPlay muted loop>
         <source src={imageUrlWrapper(data.video.url)} type='video/mp4' />

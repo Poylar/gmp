@@ -40,15 +40,15 @@ html {
   }
 
   .section {
-    @apply relative py-36;
+    @apply relative py-16 md:py-36;
     &--sm {
-      @apply py-24;
+      @apply py-16 md:py-24;
     }
     &--md {
-      @apply py-32;
+      @apply py-16 md:py-32;
     }
     &--lg {
-      @apply py-36;
+      @apply py-16 md:py-36;
     }
   }
 
@@ -64,6 +64,15 @@ html {
     background: linear-gradient(90deg, #6366f1 0%, #ac54f1 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .logo-border-bottom {
+    position: relative;
+    &:after {
+      content: '';
+      width: 90%;
+      @apply block left-0 mx-auto inset-x-0 absolute bottom-0  bg-gray-700 h-[1px];
+    }
   }
 
   .bg-card-gradient {
