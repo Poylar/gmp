@@ -1,6 +1,7 @@
 import LangDropdown from '@/components/ui/LangDropdown';
 import Logo from '@/components/ui/Logo';
 import Nav from '@/components/ui/Nav';
+import { useGlobalData } from '@/context/GlobalDataContext';
 import { useHeaderTheme } from '@/context/headerThemeContext';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -13,6 +14,7 @@ import MenuButton from '/public/menu-btn.svg';
 
 const Header = ({ nav }) => {
   const { currentTheme } = useHeaderTheme();
+  const { globalData } = useGlobalData();
   const [menu, setMenu] = useState(false);
   const router = useRouter();
 
@@ -39,8 +41,8 @@ const Header = ({ nav }) => {
           <div className='flex-none'>
             <LangDropdown />
           </div>
-          <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/'>
-            Contact us
+          <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/contacts/#form'>
+            {globalData?.header_btn}
           </Link>
           <button className='flex items-center justify-center w-10 h-10 md:hidden' onClick={handleChange}>
             {currentTheme === 'dark' ? <MenuButton /> : <MenuButtonDark />}

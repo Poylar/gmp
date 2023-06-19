@@ -81,7 +81,7 @@ const Cta = ({ data }) => {
               </motion.div>
             ))}
           </div>
-          <Link className='py-5 w-full md:w-auto text-center text-lg px-8 btn btn--primary' href='/contacts'>
+          <Link className='py-5 w-full md:w-auto text-center text-lg px-8 btn btn--primary' href='/contacts/#form'>
             Get in touch
           </Link>
         </div>

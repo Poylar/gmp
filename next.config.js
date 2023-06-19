@@ -9,6 +9,16 @@ const nextConfig = {
   images: {
     domains: ['gmp.einzelwerk.io'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:locale/home ',
+        destination: '/:locale/home ',
+        permanent: true,
+      },
+    ];
+  },
+
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
     config.module.rules.push(

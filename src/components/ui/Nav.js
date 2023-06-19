@@ -11,6 +11,9 @@ const Nav = ({ nav }) => {
     <nav className='hidden md:block'>
       <ul className='flex flex-wrap items-center gap-10'>
         {globalData?.menu?.map((item) => {
+          if (item.uri === 'index') {
+            item.uri = '/';
+          }
           return (
             <li className={clsx('block', router.asPath == `/${item.uri}` ? 'font-medium' : '')} key={item.pagetitle}>
               <Link className='link-hover' href={'/' + item.uri}>

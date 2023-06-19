@@ -42,26 +42,25 @@ export async function getStaticPaths({ locales }) {
   const paths = await Promise.all(
     locales.map(async (locale) => {
       const data = await getAllPageIds(locale);
-      return data.flatMap((item) => {
-        if (item.resources) {
-          return item.resources.map((resource) => {
-            console.log(resource.alias);
-            return {
+      return data
+        .flatMap((item) => {
+          if (item.resources) {
+            return item.resources.map((resource) => ({
               params: {
                 slug: resource.alias,
               },
               locale,
+            }));
+          } else {
+            return {
+              params: {
+                slug: item.alias,
+              },
+              locale,
             };
-          });
-        } else {
-          return {
-            params: {
-              slug: item.alias,
-            },
-            locale,
-          };
-        }
-      });
+          }
+        })
+        .filter((item) => item.params.slug !== 'index'); // Исключаем значение 'index' из массива
     })
   );
 

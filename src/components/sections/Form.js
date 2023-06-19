@@ -1,13 +1,11 @@
 import clsx from 'clsx';
-import ky from 'ky';
+import { useRef } from 'react';
 
 import { useRouter } from 'next/router';
-import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Form = ({ data }) => {
   const router = useRouter();
-  const { locale } = useRouter();
   const ref = useRef(null);
   const {
     register,
@@ -19,30 +17,34 @@ const Form = ({ data }) => {
   const onSubmit = (formData) => {
     const body = new FormData(ref.current);
     body.append('action', data.form.config.action);
-    console.log(body.getAll('action'));
-    ky.post('https://gmp.einzelwerk.io/assets/components/fetchit/action.php', {
-      headers: {
-        Accept: 'application/json',
-        'X-Requested-With': data.form.config.action,
-      },
-      body: body,
-    })
 
-      .then((res) => res.json())
-      .then((json) => {
-        router.push(`/${locale}/success`);
+    fetch(
+      new Request(data.form.config.actionUrl, {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+        },
+      }),
+      {
+        body: body,
+      }
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        router.push('/success');
       })
-      .catch((err) => {
-        alert(err);
+      .catch((error) => {
+        alert(error);
       });
   };
 
   return (
-    <section className='section section--md'>
+    <section className='section section--md qwe' id='form'>
       <div className='container'>
         <h2 className='text-3xl md:text-6xl text-center font-medium mb-8 md:mb-14'>{data.title}</h2>
         <div className='max-w-3xl mx-auto'>
-          <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
+          <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
+            <input type='hidden' name='formit-1' value='1' />
             <div className='grid md:grid-cols-2 gap-4'>
               {data.form.fields.map((field, index) => {
                 switch (field.type) {
@@ -62,12 +64,9 @@ const Form = ({ data }) => {
                               errors[field.name] && 'border-red-500'
                             )}
                           >
-                            <option value='' className='hidden' disabled selected>
-                              {field.placeholder}
-                            </option>
                             {values.map((value) => {
                               return (
-                                <option className='checked:hidden' value={value.split('==')[1]}>
+                                <option key={index} defaultValue={field.placeholder} className='checked:hidden' value={value.split('==')[1]}>
                                   {value.split('==')[0]}
                                 </option>
                               );
@@ -123,7 +122,7 @@ const Form = ({ data }) => {
                     );
                   default:
                     return (
-                      <div key={index} className={clsx('flex flex-col gap-1', field.name == 'subject' ? 'col-span-2' : '')}>
+                      <div key={index} className={clsx('flex flex-col gap-1', field.name === 'subject' ? 'col-span-2' : '')}>
                         <label htmlFor={field.name}>
                           <input
                             id={field.name}
