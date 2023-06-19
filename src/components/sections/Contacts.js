@@ -16,7 +16,7 @@ const Contacts = ({ data }) => {
                   height={400}
                   alt=''
                   src={imageUrlWrapper(item.image.url)}
-                  className='absolute inset-0 w-full opacity-30  h-full object-cover'
+                  className='absolute inset-0 w-full  h-full object-cover'
                 />
                 <div className='flex flex-col justify-between h-full w-full absolute p-6 md:p-8 z-10'>
                   <h3 className='text-3xl font-medium'>{item.title}</h3>

@@ -39,10 +39,24 @@ const Features = ({ data }) => {
                 <Corner className={clsx('hidden lg:block absolute top-0', cornerPositionTop)} />
                 <Corner className={clsx('hidden lg:block absolute bottom-0', cornerPositionBottom)} />
 
-                <motion.h2 initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} className='text-3xl md:text-5xl font-medium'>
+                <motion.h2
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{
+                    once: true,
+                  }}
+                  className='text-3xl md:text-5xl font-medium'
+                >
                   {item.title}
                 </motion.h2>
-                <motion.p initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 1, y: 0 }} className='text-xl md:text-lg'>
+                <motion.p
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{
+                    once: true,
+                  }}
+                  className='text-xl md:text-lg'
+                >
                   {item.description}
                 </motion.p>
                 <Link href={`${item.button?.href}`} className='text-gradient text-lg mt-8 group flex items-center gap-4 font-medium'>

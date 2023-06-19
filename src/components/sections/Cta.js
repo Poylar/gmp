@@ -82,7 +82,7 @@ const Cta = ({ data }) => {
             ))}
           </div>
           <Link className='py-5 w-full md:w-auto text-center text-lg px-8 btn btn--primary' href='/contacts/#form'>
-            Get in touch
+            {data.button.caption}
           </Link>
         </div>
       </div>
