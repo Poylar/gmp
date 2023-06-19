@@ -2,13 +2,14 @@ import clsx from 'clsx';
 
 import { useHeaderTheme } from '@/context/headerThemeContext';
 import { useRouter } from 'next/router';
-import { useLayoutEffect } from 'react';
+
+import { useEffect } from 'react';
 
 const Hero = ({ data }) => {
   const { currentTheme, changeTheme } = useHeaderTheme();
   const router = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (data.theme !== currentTheme) {
       changeTheme(data.theme);
     }

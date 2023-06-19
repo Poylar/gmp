@@ -14,10 +14,11 @@ const Page = ({ data, globalProps }) => {
   return (
     <Layout globalProps={globalProps}>
       <Head>
-        <title>{data.pagetitle}</title>
+        <title>{data?.seo.longtitle}</title>
+        <meta name='description' content={data?.seo.description} />
         <Opengraph data={data.seo} />
       </Head>
-      {data?.blocks.map((block, index) => (
+      {data?.blocks?.map((block, index) => (
         <RenderBlock key={index} data={block.values} type={block.chunk} />
       ))}
     </Layout>
@@ -27,7 +28,7 @@ const Page = ({ data, globalProps }) => {
 export async function getStaticProps({ params, locale }) {
   const data = await getPageData(locale, params.slug);
   const globalProps = await getGlobalData(locale);
-
+  console.log(data.pagetitle);
   return {
     props: {
       data,

@@ -5,9 +5,11 @@ import { useRouter } from 'next/router';
 import LangDropdown from './LangDropdown';
 import MenuButton from '/public/menu-btn-close.svg';
 
-const MobileNav = ({ nav, state, handleChange }) => {
-  const router = useRouter();
+import { useGlobalData } from '@/context/GlobalDataContext';
 
+const MobileNav = ({ state, handleChange }) => {
+  const router = useRouter();
+  const { globalData } = useGlobalData();
   return (
     <div className={clsx('flex-col bg-white fixed inset-0 z-50 max-h-screen overflow-auto', state ? 'flex' : 'hidden')}>
       <header
@@ -34,7 +36,7 @@ const MobileNav = ({ nav, state, handleChange }) => {
       <div className='flex flex-col px-4 pb-6 h-full'>
         <nav className='flex flex-col'>
           <ul className='flex flex-col'>
-            {nav?.map((item) => {
+            {globalData?.menu?.map((item) => {
               return (
                 <li
                   className={clsx('block py-5 text-2xl border-b border-gray-200 font-medium', router.asPath == `/${item.uri}` ? 'text-blue-600' : '')}

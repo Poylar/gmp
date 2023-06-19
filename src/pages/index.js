@@ -14,7 +14,8 @@ const Page = ({ data, globalProps }) => {
   return (
     <Layout globalProps={globalProps}>
       <Head>
-        <title>{data.pagetitle}</title>
+        <title>{data?.seo.longtitle}</title>
+        <meta name='description' content={data?.seo.description} />
         <Opengraph data={data.seo} />
       </Head>
       {data.blocks.map((block, index) => (
