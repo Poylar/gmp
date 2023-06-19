@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import { useGlobalData } from '@/context/GlobalDataContext';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
+import SmoothScroll from './SmoothScroll';
 
 const Layout = ({ children, globalProps, pageContext }) => {
   const { changeGlobalData } = useGlobalData();
@@ -19,11 +20,13 @@ const Layout = ({ children, globalProps, pageContext }) => {
       }}
       className='flex min-h-screen flex-col justify-between text-gray-950'
     >
-      <div className='flex-1 '>
-        <Header />
-        <div>{children}</div>
-        <Footer />
-      </div>
+      <SmoothScroll>
+        <div className='flex-1 '>
+          <Header />
+          <div>{children}</div>
+          <Footer />
+        </div>
+      </SmoothScroll>
     </motion.div>
   );
 };

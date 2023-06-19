@@ -29,11 +29,17 @@ const HeroMain = ({ data }) => {
       }}
       className='section relative rounded-bl-3xl md:rounded-bl-[60px] rounded-br-3xl md:rounded-br-[60px] min-h-[500px] md:min-h-screen overflow-hidden  text-white'
     >
-      <motion.video className='blackout absolute inset-0 -z-10 h-full  w-full object-cover' autoPlay muted loop>
+      <motion.video
+        poster={imageUrlWrapper(data.background.url)}
+        className='blackout absolute inset-0 -z-10 h-full  w-full object-cover'
+        autoPlay
+        muted
+        loop
+      >
         <source src={imageUrlWrapper(data.video.url)} type='video/mp4' />
       </motion.video>
       <div className='absolute flex top-0 h-full w-full font-[350] items-center justify-center text-white'>
-        <div className='flex max-w-3xl flex-col items-center gap-6'>
+        <div className='flex max-w-4xl flex-col items-center gap-6'>
           <motion.h1
             className='text-center text-4xl font-medium lg:text-7xl'
             initial={{ y: -100, opacity: 0 }}
