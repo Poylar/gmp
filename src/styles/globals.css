@@ -12,6 +12,11 @@ html {
   @apply antialiased bg-gray-100;
 }
 
+html,
+body {
+  overscroll-behavior: none;
+}
+
 @layer base {
   .prose {
     --tw-prose-bullets: #4f46e5;
