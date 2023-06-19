@@ -61,7 +61,14 @@ function ParallaxText({ children, baseVelocity = 100 }) {
 }
 
 const Values = ({ data }) => {
-  return <section className='section section--md'></section>;
+  return (
+    <section className='section section--md'>
+      <ParallaxText baseVelocity={-2}>Quality Communication Innovation</ParallaxText>
+      <ParallaxText baseVelocity={2}>Communication Stress reduction Adaptability Organization</ParallaxText>
+      <ParallaxText baseVelocity={-2}>Growth Productivity Advancement Knowledge</ParallaxText>
+      <ParallaxText baseVelocity={2}>Satisfaction Balance Empowerment Fulfillment</ParallaxText>
+    </section>
+  );
 };
 
 export default Values;
