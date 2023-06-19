@@ -26,7 +26,7 @@ const Page = ({ data, globalProps }) => {
 };
 
 export async function getStaticProps({ locale }) {
-  const data = await getPageData(locale, '404');
+  const data = await getPageData(locale, 'success');
   const globalProps = await getGlobalData(locale);
   return {
     props: {

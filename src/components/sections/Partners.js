@@ -4,13 +4,13 @@ import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 
 const Partners = ({ data }) => {
   const { currentTheme, changeTheme } = useHeaderTheme();
   const router = useRouter();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (data.theme !== currentTheme) {
       changeTheme('dark');
     }

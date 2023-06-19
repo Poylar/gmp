@@ -42,7 +42,7 @@ const MobileNav = ({ state, handleChange }) => {
                   className={clsx('block py-5 text-2xl border-b border-gray-200 font-medium', router.asPath == `/${item.uri}` ? 'text-blue-600' : '')}
                   key={item.pagetitle}
                 >
-                  <Link href={item.uri}>{item.pagetitle}</Link>
+                  <Link href={'/' + item.uri}>{item.pagetitle}</Link>
                 </li>
               );
             })}

@@ -70,6 +70,7 @@ const Skills = ({ data }) => {
                           />
                           {item.button ? (
                             <Link className='btn btn--secondary self-start' href={item.button.href}>
+                              {JSON.stringify(item.button)}
                               {item.button.caption}
                             </Link>
                           ) : null}

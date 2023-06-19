@@ -14,6 +14,7 @@ const Form = ({ data }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (formData) => {
+    console.log(formData);
     ky.post('https://gmp.einzelwerk.io/assets/components/fetchit/action.php', {
       json: {
         action: data.form.config.action,
@@ -22,7 +23,9 @@ const Form = ({ data }) => {
     })
       .json()
       .then((res) => {
-        router.push(res.data.redirectTo);
+        if (res.data.redirectTo) {
+          router.push(res.data.redirectTo);
+        }
       })
       .catch((err) => {
         alert(err);

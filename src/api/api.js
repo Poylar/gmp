@@ -6,7 +6,7 @@ export async function getPageData(lang, slug) {
     return response;
   } catch (error) {
     // Обработка ошибок
-    console.error('Ошибка при получении данных страницы:', error);
+    console.error('Error get page data:', error);
     throw error;
   }
 }
@@ -17,7 +17,7 @@ export async function getGlobalData(lang) {
     return response;
   } catch (error) {
     // Обработка ошибок
-    console.error('Ошибка при получении меню:', error);
+    console.error('Error get menu data:', error);
     throw error;
   }
 }
@@ -28,7 +28,17 @@ export async function getAllPageIds(lang) {
     return response;
   } catch (error) {
     // Обработка ошибок
-    console.error('Ошибка при получении всех идентификаторов страниц:', error);
+    console.error('Error get all pages data:', error);
+    throw error;
+  }
+}
+
+export async function getAllServicesIds(lang) {
+  try {
+    const response = await client.get(`${lang}/services`).json();
+    return response;
+  } catch (error) {
+    console.error('Error get all service pages data:', error);
     throw error;
   }
 }

@@ -13,7 +13,7 @@ const Nav = ({ nav }) => {
         {globalData?.menu?.map((item) => {
           return (
             <li className={clsx('block', router.asPath == `/${item.uri}` ? 'font-medium' : '')} key={item.pagetitle}>
-              <Link className='link-hover' href={item.uri}>
+              <Link className='link-hover' href={'/' + item.uri}>
                 {item.pagetitle}
               </Link>
             </li>

@@ -1,6 +1,7 @@
 import About from '@/components/sections/About';
 import Benefits from '@/components/sections/Benefits';
 import Contacts from '@/components/sections/Contacts';
+import Content from '@/components/sections/Content';
 import Cta from '@/components/sections/Cta';
 import Features from '@/components/sections/Features';
 import FeaturesAccordion from '@/components/sections/FeaturesAccordion';
@@ -11,6 +12,7 @@ import HeroMain from '@/components/sections/HeroMain';
 import Manifest from '@/components/sections/Manifest';
 import Map from '@/components/sections/Map';
 import Parners from '@/components/sections/Partners';
+import Services from '@/components/sections/Services';
 import Skills from '@/components/sections/Skills';
 import Values from '@/components/sections/Values';
 
@@ -30,6 +32,8 @@ const Sections = {
   Gallery: Gallery,
   form: Form,
   Partners: Parners,
+  service: Services,
+  content: Content,
 };
 
 export default Sections;

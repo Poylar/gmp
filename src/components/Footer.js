@@ -42,7 +42,7 @@ const Footer = () => {
                   {globalData?.menu?.map((item, index) => {
                     return (
                       <li className='text-gray-950' key={index}>
-                        <Link className='link-hover' href={item.uri}>
+                        <Link className='link-hover' href={'/' + item.uri}>
                           {item.pagetitle}
                         </Link>
                       </li>
