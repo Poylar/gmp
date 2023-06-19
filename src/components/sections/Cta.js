@@ -1,3 +1,4 @@
+import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import { motion, stagger } from 'framer-motion';
 import Link from 'next/link';
 
@@ -75,7 +76,7 @@ const Cta = ({ data }) => {
                 className='flex w-20 md:w-32 h-20 md:h-32 rounded-full overflow-hidden flex-1 -mr-3 last:mr-0 border-4 border-white'
               >
                 <video className='w-full h-full object-cover' autoPlay muted loop>
-                  <source src={item.url} />
+                  <source src={imageUrlWrapper(item.url)} />
                 </video>
               </motion.div>
             ))}

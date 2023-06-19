@@ -2,10 +2,13 @@ import clsx from 'clsx';
 import ky from 'ky';
 
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
 const Form = ({ data }) => {
   const router = useRouter();
+  const { locale } = useRouter();
+  const ref = useRef(null);
   const {
     register,
     handleSubmit,
@@ -14,18 +17,20 @@ const Form = ({ data }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (formData) => {
-    console.log(formData);
+    const body = new FormData(ref.current);
+    body.append('action', data.form.config.action);
+    console.log(body.getAll('action'));
     ky.post('https://gmp.einzelwerk.io/assets/components/fetchit/action.php', {
-      json: {
-        action: data.form.config.action,
-        formData,
+      headers: {
+        Accept: 'application/json',
+        'X-Requested-With': data.form.config.action,
       },
+      body: body,
     })
-      .json()
-      .then((res) => {
-        if (res.data.redirectTo) {
-          router.push(res.data.redirectTo);
-        }
+
+      .then((res) => res.json())
+      .then((json) => {
+        router.push(`/${locale}/success`);
       })
       .catch((err) => {
         alert(err);
@@ -37,7 +42,7 @@ const Form = ({ data }) => {
       <div className='container'>
         <h2 className='text-3xl md:text-6xl text-center font-medium mb-8 md:mb-14'>{data.title}</h2>
         <div className='max-w-3xl mx-auto'>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} ref={ref}>
             <div className='grid md:grid-cols-2 gap-4'>
               {data.form.fields.map((field, index) => {
                 switch (field.type) {
@@ -118,7 +123,7 @@ const Form = ({ data }) => {
                     );
                   default:
                     return (
-                      <div key={index} className='flex flex-col gap-1'>
+                      <div key={index} className={clsx('flex flex-col gap-1', field.name == 'subject' ? 'col-span-2' : '')}>
                         <label htmlFor={field.name}>
                           <input
                             id={field.name}

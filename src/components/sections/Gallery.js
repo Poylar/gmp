@@ -43,7 +43,13 @@ const Gallery = ({ data }) => {
                     counter > 5 ? 'md:col-span-4' : ''
                   )}
                 >
-                  <Image className='h-full' src={imageUrlWrapper(item.image.url)} width={item.image.width} height={item.image.height} alt='' />
+                  <Image
+                    className='h-full w-full object-cover'
+                    src={imageUrlWrapper(item.image.url)}
+                    width={item.image.width}
+                    height={item.image.height}
+                    alt=''
+                  />
                 </div>
               );
             } else if (item.description !== null && !item.logo !== null) {

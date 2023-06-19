@@ -1,6 +1,5 @@
 import { SplitText } from '@/scripts/splitText';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
-import MotionLineComponent from '../ui/MotionLineComponent';
 
 const geoUrl = 'https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries-sans-antarctica.json';
 
@@ -75,7 +74,6 @@ const Map = ({ data }) => {
             ))
           }
         </Geographies>
-        <MotionLineComponent coordinates={markerCoordinates} stroke='#6366F1' strokeWidth={1.5} strokeLinecap='round' />
 
         {markers.map(({ name, coordinates, markerOffsetY, markerOffsetX = 0 }) => (
           <Marker key={name} coordinates={coordinates}>
