@@ -4,7 +4,7 @@ import ArrowDown from '/public/arrow-down.svg';
 
 import { useState } from 'react';
 
-const Accordion = ({ settings, data, active, onToggle, ...props }) => {
+const Accordion = ({ settings, data, active, onToggle, imageIndex, setImageIndex, ...props }) => {
   const [clicked, setClicked] = useState('0');
   const contentEl = useRef(null);
   const handleToggle = (index) => {
@@ -12,6 +12,7 @@ const Accordion = ({ settings, data, active, onToggle, ...props }) => {
       return setClicked('0');
     }
 
+    setImageIndex(index);
     setClicked(index);
   };
 

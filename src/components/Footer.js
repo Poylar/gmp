@@ -85,7 +85,7 @@ const Footer = () => {
             <span className='text-gray-500'>
               {globalData?.copyright} © {new Date(Date.now()).getFullYear()}
             </span>
-            <div className='flex items-center gap-3'>
+            {/* <div className='flex items-center gap-3'>
               {socials?.map((item, index) => {
                 const Icon = SocialsIcons[item.name];
                 return (
@@ -94,7 +94,7 @@ const Footer = () => {
                   </a>
                 );
               })}
-            </div>
+            </div> */}
           </div>
           <nav>
             <ul className='flex gap-5'>

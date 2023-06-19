@@ -7,15 +7,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const FeaturesAccordion = ({ data }) => {
-  const [clicked, setClicked] = useState('0');
   const [imageIndex, setImageIndex] = useState(0);
-  const handleToggle = (index) => {
-    if (clicked === index) {
-      return setClicked('0');
-    }
-    setImageIndex(index);
-    setClicked(index);
-  };
 
   return (
     <section className='section section--md bg-gray-900 text-white'>
@@ -24,6 +16,8 @@ const FeaturesAccordion = ({ data }) => {
         <div className='grid md:grid-cols-2 gap-8 md:gap-0'>
           <div className='flex flex-col gap-2 md:pr-24'>
             <Accordion
+              imageIndex={imageIndex}
+              setImageIndex={setImageIndex}
               rootClassNames={clsx('border-b border-gray-700')}
               contentClassNames={clsx('md:text-lg text-gray-200 pb-8')}
               data={data.items}

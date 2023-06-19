@@ -51,7 +51,7 @@ const Form = ({ data }) => {
                   case 'select':
                     const values = field.value.split('||');
                     return (
-                      <div key={index} className='flex flex-col gap-1 md:col-span-2 '>
+                      <div key={index} className='flex flex-col gap-1 col-span-2 '>
                         <label htmlFor={field.name}>
                           <select
                             name={field.name}
@@ -78,7 +78,7 @@ const Form = ({ data }) => {
                     );
                   case 'textarea':
                     return (
-                      <div key={index} className='flex flex-col gap-1 md:col-span-2 '>
+                      <div key={index} className='flex flex-col gap-1 col-span-2 '>
                         <label htmlFor={field.name}>
                           <textarea
                             name={field.name}
@@ -98,7 +98,7 @@ const Form = ({ data }) => {
                     );
                   case 'checkbox':
                     return (
-                      <div key={index} className='flex flex-col gap-1 mt-2 md:col-span-2 '>
+                      <div key={index} className='flex flex-col gap-1 mt-2 col-span-2 '>
                         <div className='inline-flex gap-2 flex-wrap'>
                           <label htmlFor={field.name} className='inline-flex gap-4 flex-wrap'>
                             <input
@@ -122,7 +122,7 @@ const Form = ({ data }) => {
                     );
                   default:
                     return (
-                      <div key={index} className={clsx('flex flex-col gap-1', field.name === 'subject' ? 'col-span-2' : '')}>
+                      <div key={index} className={clsx('flex flex-col gap-1 max-md:col-span-2', field.name === 'subject' ? 'col-span-2' : '')}>
                         <label htmlFor={field.name}>
                           <input
                             id={field.name}
