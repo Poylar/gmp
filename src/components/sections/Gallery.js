@@ -29,7 +29,7 @@ const Gallery = ({ data }) => {
             } else if (item.video !== null) {
               return (
                 <div key={index} className='max-md:-order-1 col-span-12 md:col-span-7'>
-                  <VideoPlayer src={item.video ? item.video.url : ''} />
+                  <VideoPlayer src={item.video.url ? imageUrlWrapper(item.video.url) : ''} />
                 </div>
               );
             } else if (item.image !== null) {

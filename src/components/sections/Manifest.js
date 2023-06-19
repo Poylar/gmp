@@ -1,3 +1,4 @@
+import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import VideoPlayer from '../ui/VideoPlayer';
 
 const Manifest = ({ data }) => {
@@ -9,7 +10,7 @@ const Manifest = ({ data }) => {
           <div className='flex flex-col gap-6 md:gap-24 max-w-xl'>
             <div className='prose text-lg md:text-xl' dangerouslySetInnerHTML={{ __html: data.content }} />
             <div className='max-md:order-first max-w-sm'>
-              <VideoPlayer src={data.video.url} />
+              <VideoPlayer src={imageUrlWrapper(data.video.url)} />
             </div>
           </div>
         </div>
