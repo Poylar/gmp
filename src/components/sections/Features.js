@@ -1,3 +1,4 @@
+import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -30,7 +31,7 @@ const Features = ({ data }) => {
                 ></motion.div>
 
                 <video className='w-full h-full object-cover ' loop playsInline autoPlay muted>
-                  <source src={item.video ? item.video.url : ''} />
+                  <source src={item.video ? imageUrlWrapper(item.video.url) : ''} />
                 </video>
               </div>
 
