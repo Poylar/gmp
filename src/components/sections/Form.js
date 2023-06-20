@@ -143,7 +143,7 @@ const Form = ({ data }) => {
                 }
               })}
 
-              <button className='btn btn--primary md:col-span-2 mt-5 py-5 text-lg'>{data.form.submit}</button>
+              <button className='btn btn--primary col-span-2 mt-5 py-5 text-lg'>{data.form.submit}</button>
             </div>
           </form>
         </div>

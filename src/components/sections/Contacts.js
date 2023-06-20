@@ -27,7 +27,7 @@ const Contacts = ({ data }) => {
                     <a className='link-hover' href={`tel:${item.phone}`}>
                       {item.phone}
                     </a>
-                    <address>{item.address}</address>
+                    <address dangerouslySetInnerHTML={{ __html: item.address }} />
                   </div>
                 </div>
               </div>

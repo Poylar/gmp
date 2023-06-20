@@ -12,7 +12,9 @@ const Accordion = ({ settings, data, active, onToggle, imageIndex, setImageIndex
       return setClicked('0');
     }
 
-    setImageIndex(index);
+    if (setImageIndex) {
+      setImageIndex(index);
+    }
     setClicked(index);
   };
 

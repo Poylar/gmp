@@ -71,6 +71,14 @@ body {
     -webkit-text-fill-color: transparent;
   }
 
+  .bg-overlay {
+    position: relative;
+    &:before {
+      content: '';
+      @apply w-full h-full absolute inset-0 bg-gray-950 opacity-60;
+    }
+  }
+
   .logo-border-bottom {
     position: relative;
     &:after {
@@ -111,16 +119,6 @@ body {
     letter-spacing: -2px;
     line-height: 0.8;
     margin: 0;
-    white-space: nowrap;
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .scroller {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 64px;
-    display: flex;
     white-space: nowrap;
     display: flex;
     flex-wrap: nowrap;

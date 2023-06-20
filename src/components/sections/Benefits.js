@@ -9,7 +9,7 @@ const Benefits = ({ data }) => {
             return (
               <div key={index} className='flex flex-col items-center'>
                 <h3 className='text-gray-500'>{benefit.subtitle}</h3>
-                <p className='text-4xl md:text-6xl font-medium'>
+                <p className='text-3xl md:text-6xl font-medium'>
                   <Counter value={benefit.title} />
                   {benefit.title.replace(/\d+/g, '')}
                 </p>

@@ -50,7 +50,7 @@ function ParallaxText({ children, baseVelocity = 100 }) {
    */
   return (
     <div className='parallax'>
-      <motion.div className='scroller' style={{ x }}>
+      <motion.div className='scroller ' style={{ x }}>
         <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
         <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
         <span className='text-3xl md:text-7xl odd:text-blue-600  font-medium whitespace-nowrap mr-4'>{children}</span>
@@ -63,11 +63,13 @@ function ParallaxText({ children, baseVelocity = 100 }) {
 const Values = ({ data }) => {
   return (
     <section className='section section--md'>
-      {data.words.map((word, index) => (
-        <ParallaxText key={index} baseVelocity={index % 2 === 0 ? -2 : 2}>
-          {word.item}
-        </ParallaxText>
-      ))}
+      <div className=' flex flex-col gap-4 md:gap-8'>
+        {data.words.map((word, index) => (
+          <ParallaxText key={index} baseVelocity={index % 2 === 0 ? -2 : 2}>
+            {word.item}
+          </ParallaxText>
+        ))}
+      </div>
     </section>
   );
 };

@@ -22,7 +22,7 @@ const MobileNav = ({ state, handleChange }) => {
         </Link>
 
         <div className='flex gap-1 md:gap-2 justify-self-end'>
-          <div className='flex-none'>
+          <div className='flex-none max-md:hidden'>
             <LangDropdown />
           </div>
           <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/'>
@@ -42,15 +42,18 @@ const MobileNav = ({ state, handleChange }) => {
                   className={clsx('block py-5 text-2xl border-b border-gray-200 font-medium', router.asPath == `/${item.uri}` ? 'text-blue-600' : '')}
                   key={item.pagetitle}
                 >
-                  <Link href={'/' + item.uri}>{item.pagetitle}</Link>
+                  <Link href={item.uri}>{item.pagetitle}</Link>
                 </li>
               );
             })}
           </ul>
         </nav>
-        <Link className='btn btn--primary mt-auto text-center py-5 text-lg' href='/contacts'>
-          Contact us
-        </Link>
+        <div className='flex mt-auto justify-between'>
+          <LangDropdown self={'self-stretch'} direction={'bottom-full'} />
+          <Link className='btn btn--primary mt-auto text-center py-3 px-12 text-lg' href='/contacts'>
+            Contact us
+          </Link>
+        </div>
       </div>
     </div>
   );

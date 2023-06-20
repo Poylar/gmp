@@ -27,7 +27,7 @@ const HeroMain = ({ data }) => {
         margin: '0px 0px 100%',
         amount: 0,
       }}
-      className='section relative rounded-bl-3xl md:rounded-bl-[60px] rounded-br-3xl md:rounded-br-[60px] min-h-[500px] md:min-h-screen overflow-hidden  text-white'
+      className='section relative rounded-bl-3xl md:rounded-bl-[60px] rounded-br-3xl md:rounded-br-[60px] min-h-[500px] md:min-h-screen overflow-hidden bg-overlay  text-white'
     >
       <motion.video
         poster={imageUrlWrapper(data.background.url)}
@@ -39,7 +39,7 @@ const HeroMain = ({ data }) => {
         <source src={imageUrlWrapper(data.video.url)} type='video/mp4' />
       </motion.video>
       <div className='absolute flex top-0 h-full w-full font-[350] items-center justify-center text-white'>
-        <div className='flex max-w-4xl flex-col items-center gap-6'>
+        <div className='flex max-w-4xl container mx-auto  flex-col items-center gap-6'>
           <motion.h1
             className='text-center text-4xl font-medium lg:text-7xl'
             initial={{ y: -100, opacity: 0 }}

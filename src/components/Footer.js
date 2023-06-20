@@ -36,13 +36,13 @@ const Footer = () => {
         <div className='mb-10 md:mb-32 grid md:grid-cols-[max-content_1fr] gap-10 md:gap-32 mt-10 md:mt-16'>
           <div className='flex flex-col-reverse md:flex-col gap-6'>
             <div className='flex flex-col gap-5'>
-              <h5 className='text-gray-700'>Structure</h5>
+              <h5 className='text-gray-500'>Structure</h5>
               <nav className='mb-5'>
                 <ul className='grid grid-cols-2 gap-y-2 gap-x-16'>
                   {globalData?.menu?.map((item, index) => {
                     return (
                       <li className='text-gray-950' key={index}>
-                        <Link className='link-hover' href={'/' + item.uri}>
+                        <Link className='link-hover' href={item.uri}>
                           {item.pagetitle}
                         </Link>
                       </li>
@@ -57,7 +57,7 @@ const Footer = () => {
             {globalData?.contacts?.map((item, index) => {
               return (
                 <div className='flex flex-col gap-5' key={index}>
-                  <h5 className='text-gray-700'>{item.title}</h5>
+                  <h5 className='text-gray-500'>{item.title}</h5>
                   <nav>
                     <ul className='grid  gap-y-2 gap-x-16'>
                       <li className='text-gray-950'>
@@ -71,7 +71,7 @@ const Footer = () => {
                         </a>
                       </li>
                       <li className='text-gray-950'>
-                        <address>{item.address}</address>
+                        <address dangerouslySetInnerHTML={{ __html: item.address }} />
                       </li>
                     </ul>
                   </nav>

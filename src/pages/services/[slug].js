@@ -28,7 +28,6 @@ const Page = ({ data, globalProps }) => {
 export async function getStaticProps({ params, locale }) {
   const data = await getPageData(locale, params.slug);
   const globalProps = await getGlobalData(locale);
-  console.log(data.pagetitle);
   return {
     props: {
       data,
@@ -45,7 +44,6 @@ export async function getStaticPaths({ locales }) {
       return data.flatMap((item) => {
         if (item.resources) {
           return item.resources.map((resource) => {
-            console.log(resource.alias);
             return {
               params: {
                 slug: resource.alias,

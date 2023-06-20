@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import ArrowDown from '/public/arrow-down.svg';
 
-const LangDropdown = ({ className }) => {
+const LangDropdown = ({ className, self, direction }) => {
   const { locale, locales, asPath } = useRouter();
   const [dropDown, setDropDown] = useState(false);
   const dropdownRef = useRef(null);
@@ -27,8 +27,8 @@ const LangDropdown = ({ className }) => {
     setDropDown(!dropDown);
   };
   return (
-    <div className='relative flex flex-col self-start ' ref={dropdownRef}>
-      <button className='flex items-center gap-3 rounded-2xl border border-gray-500 px-3 md:px-5 py-2 md:py-3' onClick={toggleDropdown}>
+    <div className={clsx('relative flex flex-col', self ? self : 'self-start')} ref={dropdownRef}>
+      <button className='flex h-full items-center gap-3 rounded-2xl border border-gray-500 px-3 md:px-5 py-2 md:py-3' onClick={toggleDropdown}>
         <Image src={'/' + locale + '.svg'} width={24} height={24} alt='' className='overflow-hidden rounded-full' />
         <span className='capitalize'>{locale}</span>
         <ArrowDown width={20} height={20} alt='' className={'transition-transform' + (dropDown ? ' rotate-180' : '')} />
@@ -36,8 +36,9 @@ const LangDropdown = ({ className }) => {
 
       <div
         className={clsx(
-          `absolute top-full ${className} z-10 mt-1 flex w-full flex-col overflow-hidden rounded-2xl bg-white text-gray-950 transition-all duration-300`,
-          dropDown ? 'visible -translate-y-0 opacity-100' : 'invisible -translate-y-6 opacity-0'
+          `absolute ${className} z-10 mt-1 flex w-full flex-col overflow-hidden rounded-2xl bg-white text-gray-950 transition-all duration-300`,
+          dropDown ? 'visible -translate-y-0 opacity-100' : 'invisible -translate-y-6 opacity-0',
+          direction ? direction : 'top-full'
         )}
       >
         {locales.map((locale) => {

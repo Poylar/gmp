@@ -18,7 +18,14 @@ const Skills = ({ data }) => {
           <VideoCircle data={data} className={'md:hidden'} />
           <h2 className='text-3xl md:text-6xl inline-flex justify-center gap-x-3 flex-wrap font-medium max-w-3xl text-center'>
             {splitedTitle.map((word, index) =>
-              index == 2 ? <VideoCircle key={index} className={'hidden md:inline-flex'} data={data} /> : <span key={index}>{word + ' '}</span>
+              index == 2 ? (
+                <React.Fragment key={index}>
+                  <VideoCircle className={'hidden md:inline-flex'} data={data} />
+                  <span>{word + ' '}</span>
+                </React.Fragment>
+              ) : (
+                <span key={index}>{word + ' '}</span>
+              )
             )}
           </h2>
         </div>
