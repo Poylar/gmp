@@ -9,7 +9,7 @@
 html {
   font-family: 'arboria';
   font-size: 16px;
-  @apply antialiased bg-gray-100;
+  @apply antialiased bg-gray-100 overflow-x-hidden;
 }
 
 html,
@@ -77,6 +77,24 @@ body {
       content: '';
       @apply w-full h-full absolute inset-0 bg-gray-950 opacity-60;
     }
+  }
+
+  @keyframes loader {
+    0% {
+      clip-path: inset(50% 0);
+    }
+
+    50% {
+      clip-path: inset(0% 0);
+    }
+
+    100% {
+      clip-path: inset(50% 0);
+    }
+  }
+
+  .loader-animation {
+    animation: loader 1.2s forwards;
   }
 
   .logo-border-bottom {

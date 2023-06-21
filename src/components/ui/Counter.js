@@ -20,11 +20,9 @@ export default function Counter({ value, direction = 'up' }) {
   useEffect(
     () =>
       springValue.on('change', (latest) => {
-        console.log(ref.current);
-
         setCount(Intl.NumberFormat('en-US').format(latest.toFixed(0)));
       }),
-    [springValue, ref]
+    [springValue]
   );
 
   return <span ref={ref}>{count}</span>;

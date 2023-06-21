@@ -1,3 +1,5 @@
+import { imageUrlWrapper } from '@/utils/imageUrlWrapper';
+
 const Opengraph = ({ data }) => {
   const { og_title, og_description, og_image, og_image_alt, og_locale, og_locale_alternate, og_site_name } = data;
   return (
@@ -5,7 +7,7 @@ const Opengraph = ({ data }) => {
       <meta property='og:type' content='website' />
       <meta property='og:title' content={og_title} />
       <meta property='og:description' content={og_description} />
-      <meta property='og:image' content={'https://gmp.einzelwerk.io/assets/images/aboutus-1.jpg'} />
+      <meta property='og:image' content={imageUrlWrapper(og_image.replace(/^\/+/, ''))} />
       <meta property='og:image:alt' content={og_image_alt} />
       <meta property='og:image:width' content='1200' />
 
