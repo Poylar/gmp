@@ -13,19 +13,19 @@ const Services = ({ data }) => {
     changeTheme('dark');
   }, []);
   return (
-    <section className={clsx('bg-gradient-dark text-white', 'rounded-br-[60px] rounded-bl-[60px] overflow-hidden')}>
-      <div className='flex flex-col items-center gap-12 pt-60 pb-44 max-w-3xl mx-auto'>
-        <div className='flex w-56 h-56 items-center relative justify-center rounded-full overflow-hidden'>
+    <section className={clsx('bg-gradient-dark text-white', 'rounded-br-[60px] rounded-bl-[60px] overflow-hidden pt-[--header-height]')}>
+      <div className='flex flex-col items-center gap-12 pt-7 md:pt-24 pb-16 md:pb-44 max-w-3xl mx-auto'>
+        <div className='flex w-32 h-32 md:w-56 md:h-56 items-center relative justify-center rounded-full overflow-hidden'>
           <video className='w-full h-full object-cover' src={imageUrlWrapper(data.video.url)} autoPlay muted loop></video>
           <Image
-            className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+            className='absolute w-12 md:w-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
             src={imageUrlWrapper(data.icon.url)}
             alt=''
             width={data.icon.width}
             height={data.icon.height}
           />
         </div>
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 container'>
           <h1 className='text-4xl md:text-6xl text-center font-medium'>{data.title}</h1>
 
           <div

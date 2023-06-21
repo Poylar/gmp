@@ -127,7 +127,7 @@ body {
   .green-circle {
     &:after {
       content: '';
-      @apply w-2 h-2 mt-4 rounded-full bg-green-500 animate-ping;
+      @apply w-2 h-2 mt-4 rounded-full bg-green-500 animate-ping flex-none;
     }
   }
 

@@ -1,14 +1,15 @@
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Counter({ value, direction = 'up' }) {
   const ref = useRef(null);
+  const [count, setCount] = useState(0);
   const motionValue = useMotionValue(direction === 'down' ? value : 0);
   const springValue = useSpring(motionValue, {
     damping: 100,
     stiffness: 100,
   });
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (isInView) {
@@ -19,12 +20,12 @@ export default function Counter({ value, direction = 'up' }) {
   useEffect(
     () =>
       springValue.on('change', (latest) => {
-        if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat('en-US').format(latest.toFixed(0));
-        }
+        console.log(ref.current);
+
+        setCount(Intl.NumberFormat('en-US').format(latest.toFixed(0)));
       }),
-    [springValue]
+    [springValue, ref]
   );
 
-  return <span ref={ref} />;
+  return <span ref={ref}>{count}</span>;
 }

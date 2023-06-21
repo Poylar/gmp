@@ -19,10 +19,10 @@ const Hero = ({ data }) => {
     <section
       className={clsx(
         currentTheme === 'white' ? 'bg-white text-gray-950' : 'bg-gradient-dark text-white',
-        'rounded-br-[60px] rounded-bl-[60px] overflow-hidden'
+        'rounded-br-[60px] rounded-bl-[60px] overflow-hidden pt-[--header-height]'
       )}
     >
-      <div className='flex flex-col items-center gap-6 pt-60 pb-44 max-w-4xl mx-auto'>
+      <div className='flex flex-col items-center gap-6 pt-8 md:pt-28 pb-16 container md:pb-44 max-w-4xl mx-auto'>
         <h1 className='text-4xl md:text-7xl text-center font-medium'>{data.title}</h1>
         {data.description && (
           <div

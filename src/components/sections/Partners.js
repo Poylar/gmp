@@ -47,11 +47,11 @@ const Partners = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className='flex items-center flex-col gap-10'>
+        <div className='flex items-center flex-col gap-10 mt-10 md:mt-0'>
           <div className='grid grid-cols-2 max-md:container md:grid-cols-4  max-w-5xl mx-auto  max-md:[&>*:nth-child(-n+6)]:logo-border-bottom md:[&>*:nth-child(-n+4)]:logo-border-bottom max-md:[&>nth-last-child(-n+2)]:logo-border-bottom  [&>*:nth-child(4n)]:border-none'>
             {data.logos.map((logo, index) => {
               return (
-                <div className='flex px-14 py-8 border-r border-gray-700 max-md:even:border-none'>
+                <div className='flex px-6 md:px-14 py-5 md:py-8 border-r border-gray-700 max-md:even:border-none'>
                   <Image src={imageUrlWrapper(logo.url)} width={154} height={60} alt='logo' />
                 </div>
               );

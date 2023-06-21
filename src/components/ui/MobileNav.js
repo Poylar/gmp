@@ -26,7 +26,7 @@ const MobileNav = ({ state, handleChange }) => {
             <LangDropdown />
           </div>
           <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/'>
-            Contact us
+            {globalData?.header_btn}
           </Link>
           <button className='flex items-center justify-center w-10 h-10' onClick={handleChange}>
             <MenuButton />

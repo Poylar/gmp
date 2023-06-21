@@ -34,10 +34,10 @@ const Cta = ({ data }) => {
                   duration: 0.5,
                 },
               }}
-              className='text-4xl md:text-6xl font-medium flex items-center gap-5 green-circle'
-            >
-              {data.title}
-            </motion.h2>
+              className='text-4xl md:text-6xl font-medium flex items-center gap-2 md:gap-5 green-circle text-center'
+              dangerouslySetInnerHTML={{ __html: data.title }}
+            />
+
             <motion.p
               initial={{
                 opacity: 0,

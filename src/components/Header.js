@@ -7,7 +7,8 @@ import clsx from 'clsx';
 import { motion, useScroll } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import MobileNav from './ui/MobileNav';
 import MenuButtonDark from '/public/menu-btn-dark.svg';
 import MenuButton from '/public/menu-btn.svg';
@@ -17,6 +18,7 @@ const Header = ({ nav }) => {
   const { globalData } = useGlobalData();
   const [menu, setMenu] = useState(false);
   const router = useRouter();
+  const ref = useRef(null);
 
   const { scrollY } = useScroll();
 
@@ -31,6 +33,17 @@ const Header = ({ nav }) => {
   }
 
   useEffect(() => {
+    document.documentElement.style.setProperty('--header-height', `${ref.current?.offsetHeight}px`);
+  });
+
+  useEffect(() => {
+    if (menu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  });
+  useEffect(() => {
     update();
     return scrollY.onChange(() => update());
   });
@@ -39,9 +52,9 @@ const Header = ({ nav }) => {
     sticky: {
       background: 'rgba(0,0,0,.8)',
       backdropFilter: 'blur(4px)',
-      padding: '24px 40px',
-      top: '24px',
-      borderRadius: '32px',
+      padding: isMobile ? '12px 16px' : '24px 40px',
+
+      borderRadius: isMobile ? '24px' : '32px',
     },
     normal: { background: 'none' },
   };
@@ -56,30 +69,32 @@ const Header = ({ nav }) => {
 
   return (
     <>
-      <motion.header
-        layout
-        variants={variants}
-        animate={sticky ? 'sticky' : 'normal'}
-        className={clsx(
-          'fixed inset-x-0 gap-6 w-full flex md:grid md:grid-cols-[max-content_max-content_1fr] lg:grid-cols-[1fr_max-content_1fr] items-center justify-between px-4 lg:px-14 py-8 z-20',
-          currentTheme === 'dark' ? 'text-gray-200 ' : 'text-gray-700',
-          sticky && 'container '
-        )}
-      >
-        <Logo className='justify-self-start flex-none' />
-        <Nav />
-        <div className='flex gap-1 md:gap-2 justify-self-end'>
-          <div className='flex-none max-md:hidden'>
-            <LangDropdown />
+      <div className={clsx('fixed inset-x-0  z-50', sticky && 'container top-3 md:top-6')}>
+        <motion.header
+          ref={ref}
+          layout
+          variants={variants}
+          animate={sticky ? 'sticky' : 'normal'}
+          className={clsx(
+            'gap-6 w-full flex md:grid md:grid-cols-[max-content_max-content_1fr] lg:grid-cols-[1fr_max-content_1fr] items-center justify-between px-4 lg:px-14 py-5 md:py-8',
+            currentTheme === 'dark' ? 'text-gray-200 ' : 'text-gray-700'
+          )}
+        >
+          <Logo className='justify-self-start flex-none' />
+          <Nav />
+          <div className='flex gap-1 md:gap-2 justify-self-end'>
+            <div className='flex-none max-md:hidden'>
+              <LangDropdown />
+            </div>
+            <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/contacts#form'>
+              {globalData?.header_btn}
+            </Link>
+            <button className='flex items-center justify-center w-10 h-10 md:hidden' onClick={handleChange}>
+              {currentTheme === 'dark' ? <MenuButton /> : <MenuButtonDark />}
+            </button>
           </div>
-          <Link className='btn btn--primary max-md:py-2 max-md:px-3  flex-none' href='/contacts#form'>
-            {globalData?.header_btn}
-          </Link>
-          <button className='flex items-center justify-center w-10 h-10 md:hidden' onClick={handleChange}>
-            {currentTheme === 'dark' ? <MenuButton /> : <MenuButtonDark />}
-          </button>
-        </div>
-      </motion.header>
+        </motion.header>
+      </div>
       <MobileNav state={menu} handleChange={handleChange} nav={nav} />
     </>
   );
