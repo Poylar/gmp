@@ -81,7 +81,7 @@ const Map = ({ data }) => {
           {markers.map(({ name, coordinates, markerOffsetY, markerOffsetX = 0 }) => (
             <Marker key={name} coordinates={coordinates}>
               <circle r={5} fill='#6366F1' stroke='#fff' strokeWidth={2} />
-              <text textAnchor='middle' y={markerOffsetY} x={markerOffsetX} filter='url(#solid)' fill='white' fontSize={16} fontWeight={500}>
+              <text textAnchor='middle' y={markerOffsetY} x={markerOffsetX} fill='white' fontSize={16} fontWeight={500}>
                 {name}
               </text>
             </Marker>
