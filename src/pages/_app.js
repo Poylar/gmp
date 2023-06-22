@@ -6,25 +6,13 @@ import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
 
-const Loader = () => {
-  return (
-    <>
-      <div className='bar' role='bar'>
-        <div className='peg'></div>
-      </div>
-      <div className='spinner' role='spinner'>
-        <div className='spinner-icon'></div>
-      </div>
-    </>
-  );
-};
-
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   NProgress.configure({
     easing: 'ease',
     speed: 800,
+
     showSpinner: true,
   });
 

@@ -52,7 +52,7 @@ const Header = ({ nav }) => {
     sticky: {
       background: 'rgba(0,0,0,.8)',
       backdropFilter: 'blur(4px)',
-      padding: isMobile ? '12px 16px' : '24px 40px',
+      padding: isMobile ? '12px 16px' : '16px 40px',
 
       borderRadius: isMobile ? '24px' : '32px',
     },
@@ -69,7 +69,12 @@ const Header = ({ nav }) => {
 
   return (
     <>
-      <div className={clsx('fixed inset-x-0  z-50', sticky && 'container top-3 md:top-6')}>
+      <motion.div
+        className={clsx('fixed inset-x-0  z-50', sticky && 'container top-3 md:top-6')}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <motion.header
           ref={ref}
           layout
@@ -94,7 +99,7 @@ const Header = ({ nav }) => {
             </button>
           </div>
         </motion.header>
-      </div>
+      </motion.div>
       <MobileNav state={menu} handleChange={handleChange} nav={nav} />
     </>
   );
