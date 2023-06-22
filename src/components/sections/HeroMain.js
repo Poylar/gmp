@@ -36,7 +36,7 @@ const HeroMain = ({ data }) => {
         muted
         loop
       >
-        <source src={imageUrlWrapper(data.video.url)} type='video/mp4' />
+        <source src={imageUrlWrapper(data.video?.url)} type='video/mp4' />
       </motion.video>
       <div className='relative flex top-0 h-full w-full font-[350] items-center justify-center text-white'>
         <div className='flex max-w-4xl container mx-auto  flex-col items-center gap-6'>
