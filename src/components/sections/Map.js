@@ -1,4 +1,5 @@
 import { SplitText } from '@/scripts/splitText';
+import { isDesktop } from 'react-device-detect';
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps';
 
 const geoUrl = 'https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries-sans-antarctica.json';
@@ -51,48 +52,42 @@ const Map = ({ data }) => {
           </SplitText>
         </h2>
       </div>
-      <ComposableMap
-        className='bg-gray-900 w-full h-full map'
-        projectionConfig={{
-          rotate: [0, 0, 0],
-          scale: 435,
-          center: [50, 25],
-        }}
-      >
-        <Geographies fill='#192133' stroke='#485672' strokeWidth={0.2} geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => (
-              <Geography
-                style={{
-                  default: { outline: 'none' },
-                  hover: { outline: 'none' },
-                  pressed: { outline: 'none' },
-                }}
-                key={geo.rsmKey}
-                geography={geo}
-              />
-            ))
-          }
-        </Geographies>
 
-        {markers.map(({ name, coordinates, markerOffsetY, markerOffsetX = 0 }) => (
-          <Marker key={name} coordinates={coordinates}>
-            <circle r={5} fill='#6366F1' stroke='#fff' strokeWidth={2} />
-            <text
-              textAnchor='middle'
-              y={markerOffsetY}
-              x={markerOffsetX}
-              filter='url(#solid)'
-              fill='white'
-              className='text-lg text-white'
-              fontSize={16}
-              fontWeight={500}
-            >
-              {name}
-            </text>
-          </Marker>
-        ))}
-      </ComposableMap>
+      {isDesktop && (
+        <ComposableMap
+          className='bg-gray-900 w-full h-full map'
+          projectionConfig={{
+            rotate: [0, 0, 0],
+            scale: 435,
+            center: [50, 25],
+          }}
+        >
+          <Geographies fill='#192133' stroke='#485672' strokeWidth={0.2} geography={geoUrl}>
+            {({ geographies }) =>
+              geographies.map((geo) => (
+                <Geography
+                  style={{
+                    default: { outline: 'none' },
+                    hover: { outline: 'none' },
+                    pressed: { outline: 'none' },
+                  }}
+                  key={geo.rsmKey}
+                  geography={geo}
+                />
+              ))
+            }
+          </Geographies>
+
+          {markers.map(({ name, coordinates, markerOffsetY, markerOffsetX = 0 }) => (
+            <Marker key={name} coordinates={coordinates}>
+              <circle r={5} fill='#6366F1' stroke='#fff' strokeWidth={2} />
+              <text textAnchor='middle' y={markerOffsetY} x={markerOffsetX} filter='url(#solid)' fill='white' fontSize={16} fontWeight={500}>
+                {name}
+              </text>
+            </Marker>
+          ))}
+        </ComposableMap>
+      )}
     </div>
   );
 };
