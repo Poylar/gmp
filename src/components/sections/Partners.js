@@ -35,7 +35,7 @@ const Partners = ({ data }) => {
             <div className='flex gap-8  md:gap-24'>
               {data.items.map((item, index) => {
                 return (
-                  <div className='flex flex-col items-center gap-4 '>
+                  <div className='flex flex-col items-center gap-4 ' key={index}>
                     <h2 className='text-sm md:text-base text-gray-400'>{item.subtitle}</h2>
                     <p className='text-3xl md:text-5xl font-medium'>
                       <Counter value={item.title} />

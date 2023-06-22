@@ -8,7 +8,7 @@ const Logo = ({ className }) => {
   const { globalData } = useGlobalData();
   // FIXME: logo from backend
   return (
-    <Link className={clsx('block h-14', className)} href='/'>
+    <Link className={clsx('block h-10 md:h-14', className)} href='/'>
       {currentTheme === 'white' ? (
         <Image src={`/logo-dark.svg`} className='w-full h-full block' priority={true} width={87} height={52} alt='Logo'></Image>
       ) : (

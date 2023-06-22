@@ -53,7 +53,7 @@ const Footer = () => {
             </div>
             <LangDropdown />
           </div>
-          <div className='grid md:grid-cols-4 gap-10'>
+          <div className='grid md:grid-cols-2  xl:grid-cols-4 gap-10'>
             {globalData?.contacts?.map((item, index) => {
               return (
                 <div className='flex flex-col gap-5' key={index}>

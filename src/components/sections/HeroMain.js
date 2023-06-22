@@ -39,7 +39,7 @@ const HeroMain = ({ data }) => {
         <source src={imageUrlWrapper(data.video?.url)} type='video/mp4' />
       </motion.video>
       <div className='relative flex top-0 h-full w-full font-[350] items-center justify-center text-white'>
-        <div className='flex max-w-4xl container mx-auto  flex-col items-center gap-6'>
+        <motion.div className='flex max-w-4xl container mx-auto  flex-col items-center gap-6' style={{ y, opacity }}>
           <motion.h1
             className='text-center text-4xl font-medium lg:text-7xl'
             initial={{ y: -100, opacity: 0 }}
@@ -47,7 +47,6 @@ const HeroMain = ({ data }) => {
             transition={{
               delay: 1,
             }}
-            style={{ y, opacity }}
           >
             {data.title}
           </motion.h1>
@@ -62,15 +61,15 @@ const HeroMain = ({ data }) => {
                 opacity: 1,
               }}
               transition={{
-                duration: 1,
-                delay: 1.5,
+                duration: 0.5,
+                delay: 1.2,
               }}
               className='text-center text-lg f md:text-xl'
             >
               {data.description}
             </motion.p>
           )}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

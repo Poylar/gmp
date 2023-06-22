@@ -49,9 +49,9 @@ const MobileNav = ({ state, handleChange }) => {
           </ul>
         </nav>
         <div className='flex mt-auto justify-between'>
-          <LangDropdown self={'self-stretch'} direction={'bottom-full'} />
-          <Link className='btn btn--primary mt-auto text-center py-3 px-12 text-lg' href='/contacts'>
-            Contact us
+          <LangDropdown self={'self-stretch'} border={false} direction={'bottom-full'} />
+          <Link className='btn btn--primary mt-auto text-center py-3 px-4 text-lg' href='/contacts'>
+            {globalData?.header_btn}
           </Link>
         </div>
       </div>
