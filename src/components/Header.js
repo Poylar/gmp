@@ -73,7 +73,7 @@ const Header = ({ nav }) => {
         className={clsx('fixed inset-x-0  z-50', sticky && 'container top-3 md:top-6')}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 1 }}
       >
         <motion.header
           ref={ref}

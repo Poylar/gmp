@@ -44,6 +44,9 @@ const HeroMain = ({ data }) => {
             className='text-center text-4xl font-medium lg:text-7xl'
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
+            transition={{
+              delay: 1,
+            }}
             style={{ y, opacity }}
           >
             {data.title}
@@ -60,6 +63,7 @@ const HeroMain = ({ data }) => {
               }}
               transition={{
                 duration: 1,
+                delay: 1.5,
               }}
               className='text-center text-lg f md:text-xl'
             >
