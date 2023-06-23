@@ -21,12 +21,6 @@ const Contacts = ({ data }) => {
                 <div className='flex flex-col justify-between h-full w-full absolute p-6 md:p-8 z-10'>
                   <h3 className='text-3xl font-medium'>{item.title}</h3>
                   <div className='flex flex-col gap-1 items-start text-xl'>
-                    <a className='link-hover' href={`mailto:${item.email}`}>
-                      {item.email}
-                    </a>
-                    <a className='link-hover' href={`tel:${item.phone}`}>
-                      {item.phone}
-                    </a>
                     <address dangerouslySetInnerHTML={{ __html: item.address }} />
                   </div>
                 </div>

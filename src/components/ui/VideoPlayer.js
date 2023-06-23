@@ -44,13 +44,13 @@ const VideoPlayer = ({ src, className }) => {
           layout
           className='fixed inset-0 z-[90] bg-overlay'
         >
-          <div className='absolute max-w-5xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'>
+          <div className='absolute max-w-5xl left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full'>
             <button onClick={closePopup} className='p-1 bg-white rounded-lg absolute right-4 top-4 z-10'>
               <svg xmlns='http://www.w3.org/2000/svg' className='h-6 w-6' fill='white' viewBox='0 0 24 24' stroke='black'>
                 <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
               </svg>
             </button>
-            <video className='w-full h-full object-cover rounded-3xl' ref={videoRef} controls autoPlay loop playsInline muted>
+            <video className='w-full h-full object-cover rounded-3xl block overflow-hidden' ref={videoRef} controls autoPlay loop playsInline muted>
               <source src={src} type='video/mp4' />
             </video>
           </div>

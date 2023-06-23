@@ -34,7 +34,7 @@ const Cta = ({ data }) => {
                   duration: 0.5,
                 },
               }}
-              className='text-4xl md:text-6xl font-medium flex items-center gap-2 md:gap-5 green-circle text-center'
+              className='text-4xl md:text-6xl font-medium flex flex-col-reverse md:flex-row items-center gap-2 md:gap-5 green-circle text-center'
               dangerouslySetInnerHTML={{ __html: data.title }}
             />
 

@@ -44,7 +44,7 @@ const Form = ({ data }) => {
         <h2 className='text-3xl md:text-6xl text-center font-medium mb-8 md:mb-14'>{data.title}</h2>
         <div className='max-w-3xl mx-auto'>
           <form ref={ref} onSubmit={handleSubmit(onSubmit)}>
-            <input type='hidden' name='formit-1' value='1' />
+            <input type='hidden' name={`formit-${data.form.form_id}`} value='1' />
             <div className='grid md:grid-cols-2 gap-4'>
               {data.form.fields.map((field, index) => {
                 switch (field.type) {
@@ -57,7 +57,7 @@ const Form = ({ data }) => {
                             name={field.name}
                             id={field.name}
                             {...register(field.name, {
-                              required: field.required && `${field.placeholder} is required`,
+                              required: field.required && field?.errortext,
                             })}
                             className={clsx(
                               'w-full h-full py-[14px] px-5 transition-colors text-gray-400 bg-white rounded-2xl border border-gray-200 hover:border-gray-400',
@@ -84,7 +84,7 @@ const Form = ({ data }) => {
                             name={field.name}
                             id={field.name}
                             {...register(field.name, {
-                              required: field.required && `${field.placeholder} is required`,
+                              required: field.required && field?.errortext,
                             })}
                             placeholder={field.placeholder}
                             className={clsx(
@@ -109,7 +109,7 @@ const Form = ({ data }) => {
                               type={field.type}
                               {...register(field.name, {
                                 checked: true,
-                                required: field.required && `${field.placeholder} is required`,
+                                required: (field.required && field?.errortext) || 'required',
                               })}
                             />
                             <span className='w-6 h-6 block rounded-md border peer-checked:border-blue-600 peer-checked:bg-white peer-checked:bg-checked'></span>
@@ -133,7 +133,7 @@ const Form = ({ data }) => {
                             placeholder={field.placeholder}
                             type={field.type}
                             {...register(field.name, {
-                              required: field.required && `${field.placeholder} is required`,
+                              required: field.required && field?.errortext,
                             })}
                           />
                         </label>

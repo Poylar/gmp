@@ -47,7 +47,7 @@ const Skills = ({ data }) => {
           {data.tabs.map((tab, tabIndex) => {
             return (
               <React.Fragment key={tabIndex}>
-                <TabPanel key={tabIndex}>
+                <TabPanel>
                   <div className='md:grid grid-cols-2  lg:grid-cols-3 md:gap-6 gap-4 flex flex-col'>
                     <Accordion
                       wrapperClassNames={clsx('md:hidden flex flex-col gap-4')}

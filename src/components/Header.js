@@ -25,7 +25,7 @@ const Header = ({ nav }) => {
   const [sticky, setSticky] = useState(false);
 
   function update() {
-    if (scrollY?.current > 500) {
+    if (scrollY?.current > 300) {
       setSticky(true);
     } else {
       setSticky(false);
@@ -82,10 +82,11 @@ const Header = ({ nav }) => {
           animate={sticky ? 'sticky' : 'normal'}
           className={clsx(
             'gap-6 w-full flex md:grid md:grid-cols-[max-content_max-content_1fr] lg:grid-cols-[1fr_max-content_1fr] items-center justify-between px-4 lg:px-14 py-5 md:py-8',
-            currentTheme === 'dark' ? 'text-gray-200 ' : 'text-gray-700'
+            currentTheme === 'dark' ? 'text-gray-200 ' : 'text-gray-700',
+            sticky && 'text-white'
           )}
         >
-          <Logo className='justify-self-start flex-none' />
+          <Logo sticky={sticky} className='justify-self-start flex-none' />
           <Nav />
           <div className='flex gap-1 md:gap-2 justify-self-end'>
             <div className='flex-none max-md:hidden'>

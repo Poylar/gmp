@@ -30,7 +30,7 @@ const Map = ({ data }) => {
   const markerCoordinates = markers.map(({ coordinates }) => coordinates);
 
   return (
-    <section className='w-full h-[800px] relative'>
+    <section className='w-full md:h-[800px] relative'>
       <div className='hidden lg:block h-full'>
         <div className='absolute z-10 text-gray-50 container inset-x-0 md:top-32'>
           <h2 className='text-4xl md:text-5xl font-medium max-w-md ml-auto'>
