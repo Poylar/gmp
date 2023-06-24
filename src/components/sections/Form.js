@@ -69,21 +69,21 @@ const Form = ({ data }) => {
                                 isSearchable={false}
                                 name={input.name}
                                 classNames={{
-                                  container: () => 'w-full leading-none',
-                                  indicatorSeparator: () => 'hidden',
-                                  valueContainer: () => 'm-0 p-0',
-                                  input: (base) => 'm-0 p-0',
-                                  placeholder: (base) => 'm-0 p-0',
-                                  dropdownIndicator: (base) => 'm-0 p-0',
+                                  container: () => '!w-full !leading-none',
+                                  indicatorSeparator: () => '!hidden',
+                                  valueContainer: () => '!m-0 !p-0',
+                                  input: (base) => '!m-0 !p-0',
+                                  placeholder: (base) => '!m-0 !p-0',
+                                  dropdownIndicator: (base) => '!m-0 !p-0',
                                   singleValue: (base, isSelected) =>
                                     clsx({
-                                      'text-gray-400': !isSelected,
-                                      'text-gray-900': isSelected,
+                                      '!text-gray-400': !isSelected,
+                                      '!text-gray-900': isSelected,
                                     }),
                                   control: (base) =>
                                     clsx(
                                       base,
-                                      'w-full h-full py-4 px-5 transition-colors   bg-white rounded-2xl border border-gray-200 hover:border-gray-400'
+                                      '!w-full !h-full !py-4 !px-5 !transition-colors !bg-white !rounded-2xl !border !border-gray-200 !hover:border-gray-400'
                                     ),
                                 }}
                                 placeholder={`${input.placeholder}`}
