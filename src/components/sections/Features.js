@@ -25,7 +25,7 @@ const Features = ({ data }) => {
                 <motion.div
                   className='absolute inset-0 w-full h-full bg-gray-950'
                   initial={{ x: 0 }}
-                  viewport={{ amount: 1, once: true }}
+                  viewport={{ once: true }}
                   whileInView={{ x: index % 2 === 0 ? '100%' : '-100%' }}
                   transition={{ duration: 0.7 }}
                 ></motion.div>
