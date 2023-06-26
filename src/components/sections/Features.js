@@ -7,7 +7,7 @@ import Corner from '/public/corner.svg';
 
 const Features = ({ data }) => {
   return (
-    <section className='section section--lg bg-gradient-dark text-gray-50'>
+    <section className='section section--lg bg-gradient-dark text-gray-50 py'>
       <div className='flex flex-col  gap-14 md:gap-32 container'>
         {data.items.map((item, index) => {
           const isEven = index % 2 === 0;
