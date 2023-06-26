@@ -75,7 +75,7 @@ const Cta = ({ data }) => {
                 }}
                 className='flex w-20 md:w-32 h-20 md:h-32 rounded-full overflow-hidden flex-1 -mr-3 last:mr-0 border-4 border-gray-100'
               >
-                <video className='w-full h-full object-cover rounded-full overflow-hidden block' autoPlay muted loop>
+                <video className='w-full h-full object-cover rounded-full overflow-hidden block' autoPlay playsInline muted loop>
                   <source src={imageUrlWrapper(item.url)} />
                 </video>
               </motion.div>

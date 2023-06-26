@@ -8,6 +8,7 @@
 
 html {
   font-family: 'arboria';
+  font-display: swap;
   font-size: 16px;
   @apply antialiased bg-gray-100 overflow-x-hidden;
 }

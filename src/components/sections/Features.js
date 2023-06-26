@@ -22,14 +22,6 @@ const Features = ({ data }) => {
               })}
             >
               <div className='flex max-w-3xl rounded-3xl aspect-16/9 object-cover overflow-hidden lg:flex-grow-[1] flex-shrink-0 relative'>
-                <motion.div
-                  className='absolute inset-0 w-full h-full bg-gray-950'
-                  initial={{ width: '100%' }}
-                  viewport={{ amount: 1, once: true }}
-                  whileInView={{ width: 0 }}
-                  transition={{ duration: 0.7 }}
-                ></motion.div>
-
                 <video className='w-full h-full object-cover ' loop playsInline autoPlay muted>
                   <source src={item.video ? imageUrlWrapper(item.video.url) : ''} />
                 </video>

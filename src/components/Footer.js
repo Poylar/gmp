@@ -24,11 +24,13 @@ const Footer = () => {
       <div className='container relative flex flex-col z-10'>
         <div className='inline-flex gap-3 md:gap-10'>
           <div className='flex flex-1 max-w-4xl w-full'>
-            <h4 className='text-4xl md:text-5xl lg:text-8xl font-medium leading-none'>Global Media Production</h4>
+            <h3 className='text-4xl md:text-5xl lg:text-8xl font-medium leading-none'>Global Media Production</h3>
           </div>
           <Link
             href='/contacts'
             className='w-11 h-11 lg:w-32 lg:h-32 flex rounded-full hover:bg-blue-500 transition-colors bg-blue-600 flex-none items-center justify-center group'
+            aria-label='Go to contacts page'
+            title='Go to contacts page'
           >
             <ArrowLink className='text-white group-hover:-rotate-45  transition-transform' viewBox='0 0 16 14' />
           </Link>

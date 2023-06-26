@@ -3,6 +3,7 @@ import Layout from '@/components/layout';
 import Opengraph from '@/components/meta/Opengraph';
 import Sections from '@/components/sections';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 const RenderBlock = ({ type, data }) => {
   const Component = Sections[type];
@@ -11,6 +12,8 @@ const RenderBlock = ({ type, data }) => {
 };
 
 const Page = ({ data, globalProps }) => {
+  const router = useRouter();
+  console.log(router.locale);
   return (
     <Layout globalProps={globalProps}>
       <Head>
