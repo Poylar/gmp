@@ -90,6 +90,8 @@ export default async function handler() {
               fontSize: '5.65rem',
               lineHeight: '6rem',
               textAlign: 'left',
+              marginLeft: '40px',
+              marginBottom: '48px',
             }}
           >
             Transforming visions into reality
