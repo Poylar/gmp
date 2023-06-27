@@ -4,123 +4,47 @@ export const config = {
   runtime: 'edge',
 };
 
-const font = fetch(new URL('../../../public/fonts/Arboria-Medium.ttf', import.meta.url)).then((res) => res.arrayBuffer());
-
-export default async function handler(request) {
-  try {
-    const { searchParams } = new URL(request.url);
-
-    // ?title=<title>
-    const hasTitle = searchParams.has('og:title');
-    const title = hasTitle ? searchParams.get('og:title')?.slice(0, 100) : 'Gmp media group';
-
-    const fontData = await font;
-    return new ImageResponse(
-      (
+export default async function handler() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          backgroundColor: '#fff',
+          backgroundImage:
+            'radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)',
+          backgroundSize: '100px 100px',
+          height: '100%',
+          width: '100%',
+          textAlign: 'center',
+          alignContent: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          display: 'flex',
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt='Vercel'
+          width={255}
+          height={225}
+          src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE2IiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTU3LjUgMEwxMTUgMTAwSDBMNTcuNSAweiIgLz48L3N2Zz4='
+          style={{ margin: '0 75px' }}
+        />
         <div
           style={{
-            background: 'linear-gradient(180deg, #111827 0%, #1F293E 100%)',
-            backgroundSize: '100%',
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            textAlign: 'center',
-            alignItems: 'center',
-            fontFamily: 'Arboria',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            flexWrap: 'nowrap',
-            position: 'relative',
-            color: '#fff',
+            fontSize: 60,
+            marginTop: 30,
+            lineHeight: 1.8,
           }}
         >
-          <img
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              width: '100%',
-              height: '100%',
-            }}
-            src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849424754888744/background.png'
-            alt=''
-          />
-          <div
-            style={{
-              position: 'absolute',
-              top: '0',
-              left: '0',
-              width: '100%',
-              height: '100%',
-              padding: '2.5rem 2.3rem',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: '2.5rem',
-              }}
-            >
-              <img
-                style={{
-                  width: '8rem',
-                  height: '6.25rem',
-                }}
-                src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849899302629376/Asset_2.png'
-                alt=''
-              />
-              <span
-                style={{
-                  height: '5rem',
-                  width: '2px',
-                  backgroundColor: '#374151',
-                  display: 'flex',
-                }}
-              ></span>
-              <h2
-                style={{
-                  color: '#fff',
-                  fontSize: '2.5rem',
-                  fontWeight: 'bold',
-                }}
-              >
-                {title}
-              </h2>
-            </div>
-            <div
-              style={{
-                maxWidth: '50rem',
-                fontSize: '5.65rem',
-                lineHeight: '6rem',
-                textAlign: 'left',
-              }}
-            >
-              Transforming visions into reality
-            </div>
-          </div>
+          Vercel Edge Network
         </div>
-      ),
-      {
-        width: 1200,
-        height: 630,
-        fonts: [
-          {
-            name: 'Arboria',
-            data: fontData,
-            style: 'normal',
-          },
-        ],
-      }
-    );
-  } catch (e) {
-    console.log(`${e.message}`);
-    return new Response(`Failed to generate the image`, {
-      status: 500,
-    });
-  }
+      </div>
+    ),
+    {
+      width: 1200,
+      height: 600,
+    }
+  );
 }
