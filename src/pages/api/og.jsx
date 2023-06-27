@@ -25,20 +25,73 @@ export default async function handler() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          alt='Vercel'
-          width={255}
-          height={225}
-          src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTE2IiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTU3LjUgMEwxMTUgMTAwSDBMNTcuNSAweiIgLz48L3N2Zz4='
-          style={{ margin: '0 75px' }}
+          style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+          }}
+          src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849424754888744/background.png'
+          alt=''
         />
         <div
           style={{
-            fontSize: 60,
-            marginTop: 30,
-            lineHeight: 1.8,
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            padding: '2.5rem 2.3rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
           }}
         >
-          Vercel Edge Network
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '2.5rem',
+            }}
+          >
+            <img
+              style={{
+                width: '8rem',
+                height: '6.25rem',
+              }}
+              src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849899302629376/Asset_2.png'
+              alt=''
+            />
+            <span
+              style={{
+                height: '5rem',
+                width: '2px',
+                backgroundColor: '#374151',
+                display: 'flex',
+              }}
+            ></span>
+            <h2
+              style={{
+                color: '#fff',
+                fontSize: '2.5rem',
+                fontWeight: 'bold',
+              }}
+            >
+              Test
+            </h2>
+          </div>
+          <div
+            style={{
+              maxWidth: '50rem',
+              fontSize: '5.65rem',
+              lineHeight: '6rem',
+              textAlign: 'left',
+            }}
+          >
+            Transforming visions into reality
+          </div>
         </div>
       </div>
     ),
