@@ -77,6 +77,8 @@ export default async function handler() {
                 color: '#fff',
                 fontSize: '2.5rem',
                 fontWeight: 'bold',
+                marginLeft: '40px',
+                marginBottom: '48px',
               }}
             >
               Test
