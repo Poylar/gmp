@@ -24,7 +24,17 @@ export default async function handler() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-
+        <img
+          style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+          }}
+          src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849424754888744/background.png'
+          alt=''
+        />
         <div
           style={{
             position: 'absolute',
@@ -32,7 +42,7 @@ export default async function handler() {
             left: '0',
             width: '100%',
             height: '100%',
-            padding: '2.5rem 2.3rem',
+            padding: '25px 20px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -46,6 +56,14 @@ export default async function handler() {
               gap: '2.5rem',
             }}
           >
+            <img
+              style={{
+                width: '8rem',
+                height: '6.25rem',
+              }}
+              src='https://cdn.discordapp.com/attachments/1086253528873435156/1122849899302629376/Asset_2.png'
+              alt=''
+            />
             <span
               style={{
                 height: '5rem',
