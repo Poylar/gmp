@@ -37,15 +37,8 @@ export default async function handler() {
         /> */}
         <div
           style={{
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
-
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
           }}
         >
           <div
@@ -72,7 +65,7 @@ export default async function handler() {
                 display: 'flex',
               }}
             ></span>
-            <h2
+            <div
               style={{
                 color: '#fff',
                 fontSize: '2.5rem',
@@ -82,13 +75,10 @@ export default async function handler() {
               }}
             >
               Test
-            </h2>
+            </div>
           </div>
           <div
             style={{
-              maxWidth: '50rem',
-              fontSize: '5.65rem',
-              lineHeight: '6rem',
               textAlign: 'left',
               marginLeft: '40px',
               marginBottom: '48px',
